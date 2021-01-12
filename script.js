@@ -99,7 +99,7 @@ function Togglediv()
     
     const data={CommentName:comment,UserName:userDataObj.user.name,HighlightTextYcordinator:pos.y,HighlightTextRangeStartOffest:RangeOfText.startOffset, HighlightTextRangeEndOffest:RangeOfText.endOffset,BlogId:BlogId,CommentPrivacy:Privacy}
     console.log(data)
-  fetch(`http://localhost:5000/api/comment/${UserId}`, {
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/comment/${UserId}`, {
       method: 'POST', // or 'PUT'
       headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ function ReadComments()
     y.style.display='block'
   var CommentsArray=[]
   console.log(BlogId)
-  fetch(`http://localhost:5000/api/comments/${BlogId}`)
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`)
   .then(response => response.json())
   .then(
     json=>{
@@ -243,7 +243,7 @@ document.getElementById('SignOut').addEventListener('click',
 function SignOut()
 {
     console.log("signout")
-    fetch('http://localhost:5000/api/signout')
+    fetch('https://desolate-sierra-34755.herokuapp.com/api/signout')
     .then(response=>
         {
             console.log(response)
@@ -265,7 +265,7 @@ function ShowMyComments()
     var userData = localStorage.getItem("user");
     var userDataObj=JSON.parse(userData)
     var UserId=userDataObj.user._id;
-    fetch(`http://localhost:5000/api/MyComments/${UserId}/${BlogId}`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/MyComments/${UserId}/${BlogId}`)
     .then(response=>response.json())
     .then(json=>
         {
