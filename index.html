@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+	* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  color: #333;
+  font-size: 1.25rem;
+}
+.container {
+  padding: 1.5rem 10rem;
+}
+h1 {
+  font-size: 3rem;
+  margin: 1.25rem 0;
+}
+h2 {
+  font-size: 2rem;
+}
+hr {
+  margin: 3rem 0;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25)); 
+}
+p {
+  margin-bottom: 2rem;
+  line-height: 1.75rem;
+}
+#twitter-share-btn {
+  width: 5.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  color: white;
+  background-color:black;
+  cursor: pointer;
+  border: 2px solid black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  transition: color 0.2s, background-color 0.2s ease-in-out;
+  padding: 3px 3px 3px 3px;
+}
+#twitter-share-btn  ul li{
+	list-style: none;
+	display: inline-block;
+}
+
+#twitter-share-btn i {
+  pointer-events: none;
+}
+.btnEntrance {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-name: btnEntrance;
+}
+
+#CommentBody
+{
+  padding-left: 40px;
+}
+#CommentBody div
+{
+  border: 1px solid black;
+  margin-bottom:10px;
+  padding:10px 10px 10px 10px;
+}
+#CommentBoxArea
+{
+    width: 600px;
+    position: absolute;
+    top:0;
+    right: 0;
+    background-color:gray;
+    padding: 10px 10px 10px 10px;
+    height: 800px;
+    display: none;
+}
+
+#Login
+{
+     display: none; 
+}
+
+@keyframes btnEntrance { /* zoomIn */
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  100% {
+    opacity: 1;
+  }    
+}
+
+@media(max-width: 992px) {
+  .container { padding: 1.25rem 6rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.75rem; }
+}
+@media(max-width:768px) {
+  html { font-size: 12px; }
+  .container { padding: 1rem 3rem; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  hr { margin: 1.5rem 0; }
+}
+</style>
+<body style="background: #ebebeb ; position: relative;">
+	<div class="container">
+        <div id="SignUp">
+            SignUp
+            <form method="POST"> 
+                
+                <input type="text" name="name" id="name" class="form-control">
+                <br>
+                <label>
+                    Email
+                </label>
+                <input type="email" name="email" id="email"  class="form-control">
+                <br>
+                <label>Password</label>
+                <input type="password" name="password" id="password"  class="form-control">
+                <br>
+                <button type="submit" id="signupsubmit"  class="btn btn-primary" >SignUp</button>
+                <br>
+                Already have account?
+                
+                 <button class="login"   id="signClick" >Login</button> 
+            </form>
+        </div>
+
+        <div id="Login">
+            Login
+            <label>
+                Email
+            </label>
+                 <input type="email" name="email" id="emailllogin"  class="form-control">
+                 <br>
+                 <label>Password</label>
+                 <input type="password" name="password" id="passwordlogin"  class="form-control">
+                 <br>
+                 <button  type="submit" id="loginSubmit" >Login</button>
+            <br>
+            not haveing account?
+            <button id="loginClick">Signup</button>
+        </div>        
+    </div>
+  
+<script src="login.js"></script>
+</body>
+</html>
