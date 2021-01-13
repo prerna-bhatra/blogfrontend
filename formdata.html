@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form>
+    <input type="text" name="banana" value="swag">
+    <input type="file"  name="img" value="" >
+    
+  </form>
+  <button onclick="submit()"></button>
+
+  <script>
+      function submit()
+      {
+        
+        var form = document.querySelector('form');
+    var formData = new FormData(form);
+
+    console.log(...formData)
+      }
+   
+  </script>
+</body>
+</html>

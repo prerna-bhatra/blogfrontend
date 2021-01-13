@@ -71,7 +71,7 @@ function loginSubmit()
         console.log('Success:',  JSON.stringify(data));
         localStorage.setItem("user",JSON.stringify(data))
         
-        window.location.href='Blog.html'
+        window.location.href='index.html'
         })
         .catch((error) => {
         console.error('Error:', error);
