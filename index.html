@@ -31,6 +31,15 @@ h1 {
 h2 {
   font-size: 2rem;
 }
+#RestBlog
+{
+  cursor: pointer;
+  padding: 10px 10px 10px 10px;
+}
+#RestBlog:hover
+{
+  background-color: gray;
+}
 hr {
   margin: 3rem 0;
   border: 0;
@@ -45,6 +54,12 @@ p {
 {
   color: black;
   margin-left: 5px;
+}
+#blog3img
+{
+  background-color: black;
+
+  
 }
 
 #twitter-share-btn {
@@ -146,13 +161,25 @@ p {
   margin-top: 60px;
 }
 
+#blogs3  .col-md-12
+{
+  cursor: pointer;
+  margin-bottom: 10px;
+   padding: 10px 10px 10px 10px;
+            
+}
+#blogs3  .col-md-12:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 #Blog1
             {
                 cursor: pointer;
+                padding: 50px 50px 50px 50px;
             }
             #Blog1:hover
             {
-                background-color: gray;
+                background-color:rgba(0, 0, 0, 0.1);
             }
             #Blogs
             {
@@ -162,7 +189,7 @@ p {
             }
             #blog:hover
             {
-                background-color: gray;
+                background-color:transparent;
             }
             #img1
             {
@@ -190,6 +217,10 @@ p {
 #SIGNOUTBTN
 {
   display: none;
+  margin-top: 10px;
+}
+#SIGNOUTBTN li{
+  margin-left: 10px;
 }
 </style>
 <body style="background: #ebebeb ; position: relative;">
@@ -203,6 +234,8 @@ p {
       </ul>
       <ul class="nav navbar-nav navbar-right" id="SIGNOUTBTN">
         <li><button id="newblog" onclick="window.location.href='NewBlog.html'" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> New</button></li>
+        <li><button id="newblog" onclick="window.location.href='drafts.html'" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Drafts</button></li>
+        <li><button id="newblog" onclick="window.location.href='myblogs.html'" class="btn btn-success"><span class="glyphicon glyphicon-blog"></span> My Blogs</button></li>
         <li><button id="SignOut" class="btn btn-danger"><span class="glyphicon glyphicon-user"></span> Sign Out</button></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="SIGNUPLOGIN">
@@ -211,68 +244,22 @@ p {
       </ul>
     </div>
   </nav>
+ <!-- <img  src=""  id="blogimg"> -->
   <div class="container" id="BlogsArea">
+    <h1>Hello</h1>
     <div class="row">
       <div class="col-md-5" id="Blog1">
-          
+          <img id="blog1img" src="" width=100%" style="background-color: black;">
       </div>
-      <div class="col-md-7" >
-          <div class="row" id="Blogs">
-             
-          </div>
+      <div class="col-md-7" id="blogs3" >
+         
       </div>
   </div>
-  </div>
-	<div class="container" id="selectable-text-area">
+  <div class="row" id="RestBlogs"> 
     
-  <div class="selectable-text-area" >
-    <h3 id="blogHeader"></h3>
-   <p id="MainPara">
-    
-   </p>
   </div>
-  <div>
-    <span><button id="AllComments" class="btn btn-success" onclick="ReadComments()">All Comments</button></span>
-    <span><button id="MyCommentsBtn" class="btn btn-success" onclick="ShowMyComments()">My Comments</button></span>
   </div>
-  <br/> <br/>
-  <div id="ReadCommentsArea">
-    <ul id="CommentsList">
-    </ul>
-</div>
-<div id="MyComments">
-  <ul id="MyCommentsList"> 
-  </ul>
-</div>
-</div>
-<!--
-    this div will be popped on selecting the text
--->
-<div id="twitter-share-btn">
-	<ul>
-		<li><button><i class="fa fa-pencil"></i></button></li>
-		<li><button onclick="shareTwitter()" href=""><i class="fa fa-twitter"></i></button></li>
-		<li><button onclick="Togglediv()"><i class="fa fa-comment"></i></button></li>
-	</ul>
-</div>
-
-<!--
-    div with inpput and selected text 
--->
-<div id="CommentBoxArea">
-    <p id="SelectedText"></p>
-    <input type="text" placeholder="Your Comment" id="Comment">
-    <select id="CommentPrivacy">
-      <option value=0>Private</option>
-      <option value=1>Public</option>
-    </select>
-    <br/>
-    <button id="PublishBtn">Publish</button>
-</div>
-<div class="CommentBody"  id="CommentBody">
-</div>
-
-
+ 
 <script src="script.js"></script>
 
 </body>

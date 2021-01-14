@@ -1,4 +1,8 @@
 var UserData=localStorage.getItem('user')
+if(UserData===null)
+{
+  window.location.href='index.html'
+}
 console.log(UserData)
 document.getElementById('SaveBlog').addEventListener('click',
 function  SaveBlog(event)
@@ -18,8 +22,12 @@ function  SaveBlog(event)
     var formValues=document.querySelector('form');
     console.log(formValues)
     var data = new FormData();
-    data.append('file', document.getElementById('imgtag').files[0])
-    data.append('user', 'hubot');
+    data.append('BlogImg', document.getElementById('imgtag').files[0])
+    data.append('SaveMode', SaveModev);
+    data.append('BlogHeading',HeadingValue)
+    data.append('BlogContent',ContentValue)
+    data.append('UserId',UserId)
+    data.append('UserName',UserName)
     console.log(...data);
     /*for (var [key, value] of data.entries()) { 
         console.log(key, value);
@@ -32,6 +40,8 @@ function  SaveBlog(event)
         .then(response => response.json())
         .then(data => {
         console.log('Success:', data);
+        alert("Successfully file uploaded")
+        document.getElementById('formElem').reset()
         })
         .catch((error) => {
         console.error('Error:', error);
