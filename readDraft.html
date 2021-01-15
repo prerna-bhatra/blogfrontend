@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        #CurrentDraft
+        {
+            padding:  20px 20px 20px 20px;
+            border: 1px solid black;
+        }
+        #ChangeImage
+        {
+            border: 1px solid black;
+            padding: 30px 30px 30px 30px;
+        }
+        #AllVersions
+        {
+            padding:  20px 20px 20px 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">            
+            <div id="CurrentDraft" class="col-md-7" style="margin-top: 20px;margin-right: 10px;">
+                <centre><h3 id="CurrentVersion">Current Draft </h3></centre>
+                <button class="btn btn-danger" id="EditBtn">Edit</button>
+                <button style="float: right;" id="PublishBtn" class="btn btn-success">Publish</button>
+                <button style="float: right;" id="createDraftbtn" class="btn btn-primary">Create Draft</button>
+                   <form id="EditForm">
+                       <label>Heading</label>
+                       <input type="text" id="Headinginput" disabled class="form-control" >
+
+                       <label>Content</label>
+                       <textarea id="ContentInput" style="height:200px;" disabled class="form-control"></textarea>
+                        
+                        <br/> 
+                        <div  id="ChangeImage">
+                            <input id="imginput" style="float: right;" type="file"  disabled>
+                            <label style="float: right;">Change Image</label>
+                            <img  id="DraftImg" width="40%"> 
+                        </div>
+                   </form>
+            </div>
+            <div id="AllVersions" class="col-md-4 " style="margin-top: 20px;">
+                <h5 id="versions">Total Versions</h5>
+
+            </div>
+        </div>
+    </div>
+    <script src="readDraft.js"> </script>
+</body>
+</html>

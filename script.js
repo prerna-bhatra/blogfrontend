@@ -149,8 +149,6 @@ BlogArray[index+4].BlogHeading+'</h4><p>'+BlogArray[index+4].BlogContent.slice(0
  }
 
     
-
-
  var signout=document.getElementById('SignOut');
  console.log(signout)
  document.getElementById('SignOut').addEventListener('click',

@@ -39,11 +39,23 @@ function showDrafts()
 
             function showdrafts(item,index)
             {
- document.getElementById('drafts').innerHTML+='<div class="col-md-8" id="draft"><div class="row"><div class="col-md-1"><img id="draftimg" width="100%" src='+BlogImg[index]+'></div>'+
+ document.getElementById('drafts').innerHTML+='<div class="col-md-8 DraftClass" id="draft"><div class="row"><div class="col-md-1"><img id="draftimg" width="100%" src='+BlogImg[index]+'></div>'+
 '<div class="col-md-9"><h4>'+BlogArray[index].BlogHeading +'</h4><p>'+BlogArray[index].BlogContent.slice(0,150) +'...</p><p style="color:red">Read More</p></div></div>'
             }
-       
-       
+
+            BlogArray.forEach(ClickDraft)
+            
+          function ClickDraft(item,index)
+          {
+            console.log(index)
+              document.getElementsByClassName('DraftClass')[index].addEventListener('click',
+                function ReadDraft()
+                {
+                  console.log(index)
+                  window.location.href=`readDraft.html?blogId=${BlogArray[index]._id}` 
+                }
+              )
+          }
     })
 }
 }
