@@ -24,13 +24,22 @@
             padding:  20px 20px 20px 20px;
             border: 1px solid black;
         }
+        #version
+        {
+            cursor: pointer;
+            padding: 5px 5px 5px 5px;
+        }
+        #version:hover
+        {
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">            
             <div id="CurrentDraft" class="col-md-7" style="margin-top: 20px;margin-right: 10px;">
-                <centre><h3 id="CurrentVersion">Current Draft </h3></centre>
+                <centre><h3 id="CurrentVersion">Version 0</h3></centre>
                 <button class="btn btn-danger" id="EditBtn">Edit</button>
                 <button style="float: right;" id="PublishBtn" class="btn btn-success">Publish</button>
                 <button style="float: right;" id="createDraftbtn" class="btn btn-primary">Create Draft</button>

@@ -36,7 +36,7 @@ function FetchDraftswithVersions()
       {
           console.log(json)
           VerionsArr=[...json.data]
-          document.getElementById('versions').innerHTML+=VerionsArr.length
+          document.getElementById('versions').innerHTML+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+VerionsArr.length
           VerionsArr.forEach(showversions)
            
           function showversions(item,index)
@@ -44,20 +44,38 @@ function FetchDraftswithVersions()
              // console.log(VerionsArr[index+1].version)
              console.log(index)
             
-            document.getElementById('AllVersions').innerHTML+='<div id="version">'+VerionsArr[index].version+'.0.'+counter+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
+            document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
             counter+=1;
             if(index<VerionsArr.length-1 && VerionsArr[index+1].version===VerionsArr[index].version+1){
                    counter=0;
+                   
                  }
-            
+                 
             
           }
-         
-        
 
+          VerionsArr.forEach(clickVersion)
+          function clickVersion(item,index)
+          {
+            document.getElementsByClassName('versionclass')[index].addEventListener('click',
+            function Clickv()
+            {
+                    //console.log(index)
+                    document.getElementById('Headinginput').value=VerionsArr[index].EditedHeading;
+                    document.getElementById('ContentInput').value=VerionsArr[index].EditedContent;
+                    var imgsrc=`http://localhost:5000/api/EditDraftimg/${VerionsArr[index]._id}`;
+                    document.getElementById('DraftImg').src=imgsrc
+
+
+            } 
+         )
+          }
       })
 
 }
+
+
+
 document.getElementById('EditBtn').addEventListener('click',
 function EnableForm()
 {
@@ -68,8 +86,3 @@ function EnableForm()
 
 }
 )
-
-
-
-
-
