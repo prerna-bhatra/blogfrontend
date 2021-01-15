@@ -65,8 +65,6 @@ function FetchDraftswithVersions()
                     document.getElementById('ContentInput').value=VerionsArr[index].EditedContent;
                     var imgsrc=`http://localhost:5000/api/EditDraftimg/${VerionsArr[index]._id}`;
                     document.getElementById('DraftImg').src=imgsrc
-
-
             } 
          )
           }
@@ -74,6 +72,33 @@ function FetchDraftswithVersions()
 
 }
 
+//console.log(document.getElementById('imginput'.value))
+document.getElementById('imginput').addEventListener('change',
+function ChangeImg()
+{
+ // document.getElementById('DraftImg').src=document.getElementById('imginput').value
+ console.log(document.getElementById('imginput').value)
+ console.log(document.getElementById('imginput').files[0].name)
+ //document.getElementById('DraftImg').src=document.getElementById('imginput').files[0].name
+ var input = document.getElementById("imginput");
+var fReader = new FileReader();
+fReader.readAsDataURL(input.files[0]);
+fReader.onloadend = function(event){
+    var img = document.getElementById("DraftImg");
+    img.src = event.target.result;
+}
+})
+
+document.getElementById('createDraftbtn').addEventListener('click',
+function creaDraft()
+{
+    
+})
+
+function CreatNewDraft()
+{
+
+}
 
 
 document.getElementById('EditBtn').addEventListener('click',
@@ -82,7 +107,6 @@ function EnableForm()
   document.getElementById('ContentInput').disabled=false
   document.getElementById('Headinginput').disabled=false
   document.getElementById('imginput').disabled=false
-  
 
 }
 )
