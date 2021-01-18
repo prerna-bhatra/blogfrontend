@@ -12,6 +12,7 @@ FetchDraftswithVersions()
 
 
 let counter=0;
+let counter1=1;
 function FetchDraftswithVersions()
 {
     
@@ -31,21 +32,29 @@ function FetchDraftswithVersions()
           else{
             document.getElementById('versions').innerHTML+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+VerionsArr.length
           }
-         
+          
+          document.getElementById('AllVersions').innerHTML+='<div id="version1">1.0.0</div>'
+
           VerionsArr.forEach(showversions)
            
           function showversions(item,index)
           {
              // console.log(VerionsArr[index+1].version)
+             
              console.log(index)
-            
-            document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
-            counter+=1;
-            if(index<VerionsArr.length-1 && VerionsArr[index+1].version===VerionsArr[index].version+1){
-                   counter=0;
-                   
+             if(VerionsArr[index].version===1)
+             {
+              document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter1+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
+              counter1+=1; 
             }
-      
+             else{
+              document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
+              counter+=1;
+              if(index<VerionsArr.length-1 && VerionsArr[index+1].version===VerionsArr[index].version+1){
+                     counter=0;
+                     
+              }
+             }
           }
 
           ShowDraftContent()
