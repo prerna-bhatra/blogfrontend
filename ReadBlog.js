@@ -2,7 +2,21 @@ var url_string = window.location.href
 var url = new URL(url_string);
 var BlogId = url.searchParams.get("blogId");
 console.log(BlogId);
+CheckLogin()
 ReadBlog()
+
+function CheckLogin()
+{
+  if(window.localStorage.getItem('user'))
+  {
+    document.getElementById('MyCommentsBtn').style.display='inline'
+  }
+  
+
+
+
+
+}
 
 function ReadBlog()
 {

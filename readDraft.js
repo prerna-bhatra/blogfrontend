@@ -5,26 +5,12 @@ var userData = localStorage.getItem("user");
 var userDataObj=JSON.parse(userData)
 var defaultimg;
 var DraftId;
+let VerionsArr=[]
 
-ShowDraftContent()
 FetchDraftswithVersions()
-function ShowDraftContent()
-{
 
-    fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
-    .then(response=>response.json())
-    .then(json=>
-        {
-            console.log(json)
-            document.getElementById('Headinginput').value=json.data.BlogHeading;
-           var imgsrc=`http://localhost:5000/api/blogs/img/${blogId}`;
-           document.getElementById('DraftImg').src=imgsrc
-            document.getElementById('ContentInput').value=json.data.BlogContent;
 
-        })
-}
 
-var VerionsArr=[]
 let counter=0;
 function FetchDraftswithVersions()
 {
@@ -35,9 +21,17 @@ function FetchDraftswithVersions()
   .then(response=>response.json())
   .then(json=>
       {
+
           console.log(json)
           VerionsArr=[...json.data]
-          document.getElementById('versions').innerHTML+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+VerionsArr.length
+          if(VerionsArr.length===0)
+          {
+            document.getElementById('versions').innerHTML+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+1
+          }
+          else{
+            document.getElementById('versions').innerHTML+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+VerionsArr.length
+          }
+         
           VerionsArr.forEach(showversions)
            
           function showversions(item,index)
@@ -50,10 +44,11 @@ function FetchDraftswithVersions()
             if(index<VerionsArr.length-1 && VerionsArr[index+1].version===VerionsArr[index].version+1){
                    counter=0;
                    
-                 }
+            }
       
           }
 
+          ShowDraftContent()
           VerionsArr.forEach(clickVersion)
           function clickVersion(item,index)
           {
@@ -88,6 +83,34 @@ function FetchDraftswithVersions()
           }
       })
 
+}
+
+//showing latest content of version in content
+function ShowDraftContent()
+{
+
+  console.log("veriosn array is gloabbal",VerionsArr)
+     if(VerionsArr.length===0)
+     {
+      fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
+      .then(response=>response.json())
+      .then(json=>
+          {
+              console.log(json)
+              document.getElementById('Headinginput').value=json.data.BlogHeading;
+             var imgsrc=`http://localhost:5000/api/blogs/img/${blogId}`;
+             document.getElementById('DraftImg').src=imgsrc
+              document.getElementById('ContentInput').value=json.data.BlogContent;
+  
+          })
+     }
+     else{
+      document.getElementById('Headinginput').value=VerionsArr[VerionsArr.length-1].EditedHeading;
+      var imgsrc=`http://localhost:5000/api/EditDraftimg/${VerionsArr[VerionsArr.length-1]._id}`;
+      document.getElementById('DraftImg').src=imgsrc
+       document.getElementById('ContentInput').value=VerionsArr[VerionsArr.length-1].EditedContent;
+     }
+   
 }
 
 //console.log(document.getElementById('imginput'.value))
@@ -146,8 +169,45 @@ function creaDraft(event)
     })
     .then(response => response.json())
     .then(data => {
-    console.log('Success:', data);
+
+      console.log('Success:', data);
     alert("Successfully file uploaded")
+    document.getElementById('EditForm').reset()
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    });
+
+})
+
+//Publish the draft
+document.getElementById('PublishBtn').addEventListener('click',
+function PublishDraft()
+{
+    let Headinginput=document.getElementById('Headinginput').value;
+    let ContentInput=document.getElementById('ContentInput').value;
+   let  Finalimg=document.getElementById('imginput').files[0]
+   var formValues=document.querySelector('form');
+   var data = new FormData();
+   data.append('BlogImg',Finalimg)
+  // data.append('UserId',userDataObj.user._id)
+  data.append('BlogContent',ContentInput)
+  data.append('BlogHeading',Headinginput)
+  console.log(typeof(DraftId))
+  if(DraftId===undefined)
+  {
+    DraftId=0;
+  }
+  console.log("DraftId",DraftId)
+  fetch(`http://localhost:5000/api/PublishEditedDraft/${userDataObj.user._id}/${blogId}/${DraftId}`, {
+    method: 'POST', 
+    body: data,
+    })
+    .then(response => response.json())
+    .then(data => {
+
+      console.log('Success:', data);
+    alert("Successfully blog published")
     document.getElementById('EditForm').reset()
     })
     .catch((error) => {
