@@ -3,7 +3,8 @@ var url = new URL(url_string);
 var blogId = url.searchParams.get("blogId");
 var userData = localStorage.getItem("user");
 var userDataObj=JSON.parse(userData)
-
+var defaultimg;
+var DraftId;
 
 ShowDraftContent()
 FetchDraftswithVersions()
@@ -50,8 +51,7 @@ function FetchDraftswithVersions()
                    counter=0;
                    
                  }
-                 
-            
+      
           }
 
           VerionsArr.forEach(clickVersion)
@@ -64,7 +64,25 @@ function FetchDraftswithVersions()
                     document.getElementById('Headinginput').value=VerionsArr[index].EditedHeading;
                     document.getElementById('ContentInput').value=VerionsArr[index].EditedContent;
                     var imgsrc=`http://localhost:5000/api/EditDraftimg/${VerionsArr[index]._id}`;
+                    DraftId=VerionsArr[index]._id;
+                    console.log(DraftId,VerionsArr[index]._id)
+                    console.log("DraftId",DraftId)
                     document.getElementById('DraftImg').src=imgsrc
+                    console.log(imgsrc)
+                    defaultimg=imgsrc
+                    console.log(defaultimg)
+                    console.log(typeof(defaultimg))
+
+                 /* fetch(`http://localhost:5000/api/EditDraftimgjson/${VerionsArr[index]._id}`)
+                    .then(response=>response.json())
+                    .then(json=>
+                      {
+
+                        console.log(json)
+                        
+                      })
+                      */
+                      
             } 
          )
           }
@@ -89,16 +107,54 @@ fReader.onloadend = function(event){
 }
 })
 
+var Draftimg;
 document.getElementById('createDraftbtn').addEventListener('click',
-function creaDraft()
+function creaDraft(event)
 {
-    
+  event.preventDefault()
+   var newHeading=document.getElementById('Headinginput').value
+   var newContent=document.getElementById('ContentInput').value
+   console.log(newHeading,newContent)
+   /*if(document.getElementById('imginput').files[0]===undefined)
+   {
+    //var Draftimg=
+    Draftimg= defaultimg
+    console.log(defaultimg)
+    console.log(Draftimg)
+   }
+   else{
+    Draftimg=document.getElementById('imginput').files[0]
+   }
+   */
+  
+   //console.log(Draftimg)
+   Draftimg=document.getElementById('imginput').files[0]
+   var formValues=document.querySelector('form');
+   var data = new FormData();
+   
+   data.append('EditedImg',Draftimg)
+  // data.append('UserId',userDataObj.user._id)
+  data.append('EditedContent',newContent)
+  data.append('EditedHeading',newHeading)
+  console.log(typeof(DraftId))
+  //this id is added in dbms collection when user does not change image and want to keep the previous image
+  data.append("DummyId",DraftId)
+  //data.append("draftId",)
+  fetch(`http://localhost:5000/api/EditDraft/${userDataObj.user._id}/${blogId}`, {
+    method: 'POST', 
+    body: data,
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log('Success:', data);
+    alert("Successfully file uploaded")
+    document.getElementById('EditForm').reset()
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    });
+
 })
-
-function CreatNewDraft()
-{
-
-}
 
 
 document.getElementById('EditBtn').addEventListener('click',
