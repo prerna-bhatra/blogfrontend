@@ -7,20 +7,20 @@ ReadBlog()
 
 function CheckLogin()
 {
+
   if(window.localStorage.getItem('user'))
   {
     document.getElementById('MyCommentsBtn').style.display='inline'
   }
-  
-
-
 
 
 }
 
 function ReadBlog()
 {
-    fetch(`http://localhost:5000/api/ReadBlog/${BlogId}`)
+    let userData=JSON.parse(window.localStorage.getItem('user'))
+    console.log(userData)
+    fetch(`http://localhost:5000/api/ReadBlog/${BlogId}/${userData.user._id}`)
     .then(response=>response.json())
     .then(json=>
         {
@@ -29,6 +29,7 @@ function ReadBlog()
             var imgsrc=`http://localhost:5000/api/blogs/img/${BlogId}`;
             document.getElementById('BlogImg').src=imgsrc
             document.getElementById('MainPara').innerHTML=json.data.BlogContent;
+            document.getElementById('views').innerHTML+=json.data.viewedBy.length+"  views"
 
         })
 }
@@ -378,5 +379,5 @@ function ResumeAudio(){
 })
 
 
-console.log("Voices" ,window.speechSynthesis.getVoices())
+//console.log("Voices" ,window.speechSynthesis.getVoices())
 
