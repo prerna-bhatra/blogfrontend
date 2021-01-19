@@ -33,17 +33,25 @@
         {
             background-color: gray;
         }
+        #version1
+        {
+            cursor: pointer;
+            padding: 5px 5px 5px 5px;
+        }
+        #version1:hover
+        {
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">            
             <div id="CurrentDraft" class="col-md-7" style="margin-top: 20px;margin-right: 10px;">
-                <centre><h3 id="CurrentVersion">Version 0</h3></centre>
+                
                 <button class="btn btn-danger" id="EditBtn">Edit</button>
                 <button style="float: right;" id="PublishBtn" class="btn btn-success">Publish</button>
                 <button style="float: right;" id="createDraftbtn" class="btn btn-success">Create Draft</button>
-                <button style="float: right;" id="CheckOriginalVersion" class="btn btn-success">Original</button>
                    <form id="EditForm"   method="POST" enctype="multipart/form-data">
                        <label>Heading</label>
                        <input type="text" id="Headinginput" disabled class="form-control" >
@@ -60,8 +68,9 @@
                    </form>
             </div>
             <div id="AllVersions" class="col-md-4 " style="margin-top: 20px;">
-                <h5 id="versions">Total Versions</h5>
 
+                <h5 id="versions">Total Versions</h5>
+                <!-- <div id="FirstVersion"></div> -->
             </div>
         </div>
     </div>

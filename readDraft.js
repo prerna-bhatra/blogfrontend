@@ -58,6 +58,25 @@ function FetchDraftswithVersions()
           }
 
           ShowDraftContent()
+          
+//show first version data
+
+document.getElementById('version1').addEventListener('click',
+function ChangeBlogDetails()
+{
+  fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
+  .then(response=>response.json())
+  .then(json=>
+      {
+          console.log(json)
+          document.getElementById('Headinginput').value=json.data.BlogHeading;
+         var imgsrc=`http://localhost:5000/api/blogs/img/${blogId}`;
+         document.getElementById('DraftImg').src=imgsrc
+          document.getElementById('ContentInput').value=json.data.BlogContent;
+
+      })
+  
+})
           VerionsArr.forEach(clickVersion)
           function clickVersion(item,index)
           {
@@ -101,6 +120,7 @@ function ShowDraftContent()
   console.log("veriosn array is gloabbal",VerionsArr)
      if(VerionsArr.length===0)
      {
+       //show original content verion 1.0.0
       fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
       .then(response=>response.json())
       .then(json=>
@@ -114,6 +134,7 @@ function ShowDraftContent()
           })
      }
      else{
+       //show latest version content
       document.getElementById('Headinginput').value=VerionsArr[VerionsArr.length-1].EditedHeading;
       var imgsrc=`http://localhost:5000/api/EditDraftimg/${VerionsArr[VerionsArr.length-1]._id}`;
       document.getElementById('DraftImg').src=imgsrc
@@ -188,6 +209,10 @@ function creaDraft(event)
     });
 
 })
+
+
+
+
 
 //Publish the draft
 document.getElementById('PublishBtn').addEventListener('click',

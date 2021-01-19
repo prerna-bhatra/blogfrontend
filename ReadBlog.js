@@ -342,3 +342,41 @@ for(let i=0;i<MyCommentsArray.length;i++)
     
  })
 }
+
+
+//Listen Blog
+//window.speechSynthesis.speak(msg)
+document.getElementById('Listen').addEventListener('click',
+function ListenBlog()
+{
+ console.log("Listen")
+ var Textmsg=document.getElementById('MainPara').innerHTML
+ const utterance = new SpeechSynthesisUtterance(Textmsg);
+  window.speechSynthesis.speak(utterance);
+})
+
+
+document.getElementById('Stop').addEventListener('click',
+function StopAudio()
+{
+  console.log("Stop Audio")
+  window.speechSynthesis.pause();
+
+})
+
+//
+document.getElementById('Cancel').addEventListener('click',
+function CancelAudio()
+{
+  window.speechSynthesis.cancel();
+})
+
+document.getElementById('Resume').addEventListener('click',
+function ResumeAudio(){
+  window.speechSynthesis.resume();
+
+})
+
+
+console.log("Voices" ,window.speechSynthesis.getVoices())
+

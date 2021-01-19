@@ -221,6 +221,10 @@
     #SIGNOUTBTN li{
       margin-left: 10px;
     }
+    #AudioIcons
+    {
+      margin-right: 40px;
+    }
     </style>
 </head>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -230,8 +234,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body></body>
     
+<!-- -->
+  <div>
+   
+  </div>
 	<div class="container" id="selectable-text-area">
-
+    <button style="float: right; background-color:black;background-color:lime ;" class="AudioIcons" id="Listen" ><i class="fa fa-file-audio-o "></i></button>
+    <button style="float: right;color: black;background-color: red;" id="Stop"  class="AudioIcons"><i class="fas fa-pause"></i></button>
+    <button style="float: right;color: black;background-color:yellow;" id="Resume"  class="AudioIcons"><i class="fas fa-play"></i></button>
+    <button style="float: right;" id="Cancel"><i class="fa fa-circle"></i></button>
         <div class="selectable-text-area" >
           <h3 id="blogHeader"></h3>
           <img src="" id="BlogImg" width="50%" style="background-color: black;">

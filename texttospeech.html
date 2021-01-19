@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="resultsDisplay" id="rd"></div>
+<br/>
+
+<center>
+  <button onclick="start()" id="startbtn">Start</button>
+  <button onclick="stop()" id="stopbtn">Stop</button>
+</center>
+<script>
+    resultsDisplay = document.getElementById("rd");
+startButton = document.getElementById("startbtn");
+stopButton = document.getElementById("stopbtn");
+
+recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+recognition.lang = "en-US";
+recognition.interimResults = false;
+recognition.maxAlternatives = 5;
+
+recognition.onresult = function(event) {
+  resultsDisplay.innerHTML = "You Said:" + event.results[0][0].transcript;
+};
+
+function start() {
+  recognition.start();
+  startButton.style.display = "none";
+  stopButton.style.display = "block";
+}
+
+function stop() {
+  recognition.stop();
+  startButton.style.display = "block";
+  stopButton.style.display = "none";
+}
+</script>
+</body>
+</html>
