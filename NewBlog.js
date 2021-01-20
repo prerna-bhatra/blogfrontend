@@ -3,6 +3,21 @@ if(UserData===null)
 {
   window.location.href='index.html'
 }
+
+var a = document.getElementById('hashTagInput');
+a.addEventListener('keyup',addthis);
+
+function addthis() {
+    b = a.value.replace('#',''); 
+    a.value = '#'+b
+    
+    if (a.value.indexOf(' '))
+    {
+    a.value = a.value.replace(' ','#');
+    }
+    
+}
+
 console.log(UserData)
 document.getElementById('SaveBlog').addEventListener('click',
 function  SaveBlog(event)
@@ -21,6 +36,7 @@ function  SaveBlog(event)
     console.log(blogimg)
     var formValues=document.querySelector('form');
     console.log(formValues)
+    
     var data = new FormData();
     data.append('BlogImg', document.getElementById('imgtag').files[0])
     data.append('SaveMode', SaveModev);
