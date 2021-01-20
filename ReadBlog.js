@@ -40,11 +40,24 @@ function ReadBlog()
     .then(json=>
         {
             console.log(json)
-            // document.getElementById('blogHeader').innerHTML=json.data.BlogHeading;
-            // var imgsrc=`http://localhost:5000/api/blogs/img/${BlogId}`;
-            // document.getElementById('BlogImg').src=imgsrc
-            // document.getElementById('MainPara').innerHTML=json.data.BlogContent;
-            // document.getElementById('views').innerHTML+=json.data.viewedBy.length+"  views"
+
+            let d=document.createDocumentFragment()
+            let BlogHeaderTag=document.createElement('H4')
+            BlogHeaderTag.setAttribute("id","BlogHeaderId")
+            let BlogContentTag=document.createElement('P')
+            BlogContentTag.setAttribute("id","MainPara")
+            let imgTag=document.createElement('img')
+            imgTag.setAttribute("id","imgId")
+            d.appendChild(BlogHeaderTag)
+            d.appendChild(imgTag)
+            d.appendChild(BlogContentTag)
+            document.getElementById('BlogDetails').appendChild(d)
+            console.log(d)
+            document.getElementById('BlogHeaderId').textContent=json.data.BlogHeading;
+            var imgsrc=`http://localhost:5000/api/blogs/img/${BlogId}`;
+           document.getElementById('imgId').src=imgsrc
+            document.getElementById('MainPara').textContent=json.data.BlogContent;
+          //  document.getElementById('views').textContent+=json.data.viewedBy.length+"  views"
 
         })
         
@@ -376,6 +389,7 @@ function ListenBlog()
 document.getElementById('Stop').addEventListener('click',
 function StopAudio()
 {
+  //document.getElementById('Listen').disabled=true
   console.log("Stop Audio")
   window.speechSynthesis.pause();
 
@@ -390,6 +404,7 @@ function CancelAudio()
 
 document.getElementById('Resume').addEventListener('click',
 function ResumeAudio(){
+  console.log("resume")
   window.speechSynthesis.resume();
 
 })

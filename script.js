@@ -101,7 +101,7 @@ function FetchAndShowBlogs()
           // console.log( document.getElementsByClassName('TrendingColumns')[index])
           let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
          // console.log(imgsrc)
-         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,200)+'</p>'
+         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p>'
          // console.log(typeof(item))
          document.getElementsByClassName('TrendingColumns')[index].addEventListener('click',
          function ClickOnReadBlog()
