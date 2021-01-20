@@ -1,6 +1,6 @@
 var url_string = window.location.href
 var url = new URL(url_string);
-var BlogId = url.searchParams.get("blogId");
+var BlogId = url.searchParams.get("BlogId");
 console.log(BlogId);
 CheckLogin()
 ReadBlog()
@@ -18,20 +18,36 @@ function CheckLogin()
 
 function ReadBlog()
 {
+    //first check if user has viewed blog or not in locastorage store  view and blog 
+    //id if not then save if then send 0 in view
+  
     let userData=JSON.parse(window.localStorage.getItem('user'))
     console.log(userData)
-    fetch(`http://localhost:5000/api/ReadBlog/${BlogId}/${userData.user._id}`)
+    let ViewedValue=0
+   
+    const FindBlogIndex = Object.keys(localStorage)[Object.values(localStorage).indexOf(BlogId)];
+    //console.log( FindBlogIndex)
+    if(FindBlogIndex==undefined)
+    {
+      ViewedValue=1;
+      localStorage.setItem(`blog${localStorage.length+1}`,BlogId)
+    }
+    console.log(ViewedValue)
+    
+    
+    fetch(`http://localhost:5000/api/ReadBlog/${BlogId}/${ViewedValue}`)
     .then(response=>response.json())
     .then(json=>
         {
             console.log(json)
-            document.getElementById('blogHeader').innerHTML=json.data.BlogHeading;
-            var imgsrc=`http://localhost:5000/api/blogs/img/${BlogId}`;
-            document.getElementById('BlogImg').src=imgsrc
-            document.getElementById('MainPara').innerHTML=json.data.BlogContent;
-            document.getElementById('views').innerHTML+=json.data.viewedBy.length+"  views"
+            // document.getElementById('blogHeader').innerHTML=json.data.BlogHeading;
+            // var imgsrc=`http://localhost:5000/api/blogs/img/${BlogId}`;
+            // document.getElementById('BlogImg').src=imgsrc
+            // document.getElementById('MainPara').innerHTML=json.data.BlogContent;
+            // document.getElementById('views').innerHTML+=json.data.viewedBy.length+"  views"
 
         })
+        
 }
 
 

@@ -29,10 +29,12 @@ function  SaveBlog(event)
     data.append('UserId',UserId)
     data.append('UserName',UserName)
     console.log(...data);
-    /*for (var [key, value] of data.entries()) { 
-        console.log(key, value);
-      }
-      */
+    
+    
+
+
+
+
     fetch(`http://localhost:5000/api/blog/${UserId}`, {
         method: 'POST', 
         body: data,

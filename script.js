@@ -71,9 +71,62 @@ FetchAndShowBlogs()
 function FetchAndShowBlogs()
  {
     //show Trending blogs or top 6 blogs having most views
-   
+    fetch(`http://localhost:5000/api/ShowTrendingBlog`)
+    .then(response=>response.json())
+    .then(json=>
+      {
+        console.log(json)
+        let d = document.createDocumentFragment();
+        let TrendingRow=document.createElement('div')
+        TrendingRow.setAttribute("id","TrendingRow")
+        TrendingRow.setAttribute("class","row")
+        json.result.forEach(ShowTrendingBlogs)
+        function ShowTrendingBlogs(item,index)
+        {
+         
+            //console.log(index)
+            let TrendingColumns=document.createElement('div')
+            TrendingColumns.setAttribute("id","TrendingColumns")
+            TrendingColumns.setAttribute("class","col-md-4 TrendingColumns")
+            TrendingRow.appendChild(TrendingColumns)
+            //console.log(TrendingColumns)
+          
+        }    
+        d.appendChild(TrendingRow)
+        document.getElementById('BlogsArea').appendChild(d)
+        
+        json.result.forEach(ShowTrendingBlogs1)
+        function ShowTrendingBlogs1(item,index)
+        {
+          // console.log( document.getElementsByClassName('TrendingColumns')[index])
+          let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
+         // console.log(imgsrc)
+         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,200)+'</p>'
+         // console.log(typeof(item))
+         document.getElementsByClassName('TrendingColumns')[index].addEventListener('click',
+         function ClickOnReadBlog()
+         {
+        //  console.log(item._id)
+          window.location.href=`ReadBlog.html?BlogId=${item._id}`
+         })
+          console.log(item)
 
- }
+        }
+
+       /*
+       
+        function ShowTrendingBlogs(item,index)
+       
+       // console.log(document.getElementsByClassName('TrendingColumns'))
+        var x= document.getElementsByClassName('TrendingColumns');
+         console.log('unnn', x)
+        
+         
+*/
+      })
+      //show rest of the blogs
+    
+    }
 
     
  var signout=document.getElementById('SignOut');
