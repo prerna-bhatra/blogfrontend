@@ -4,7 +4,8 @@ if(UserData===null)
   window.location.href='index.html'
 }
 
-var a = document.getElementById('hashTagInput');
+//hashtag Input
+let a = document.getElementById('hashTagInput');
 a.addEventListener('keyup',addthis);
 
 function addthis() {
@@ -36,22 +37,26 @@ function  SaveBlog(event)
     console.log(blogimg)
     var formValues=document.querySelector('form');
     console.log(formValues)
+   
+    //
+    let HashTagsValue=document.getElementById('hashTagInput').value;
+    let HashTagsArray=[]
     
-    var data = new FormData();
+    HashTagsArray=[...HashTagsValue.split("#")]
+    console.log("arr type",typeof(HashTagsArray))
+    console.log(HashTagsArray)
+    let data = new FormData();
     data.append('BlogImg', document.getElementById('imgtag').files[0])
     data.append('SaveMode', SaveModev);
     data.append('BlogHeading',HeadingValue)
     data.append('BlogContent',ContentValue)
     data.append('UserId',UserId)
     data.append('UserName',UserName)
+    data.append('hashTags',HashTagsArray)
     console.log(...data);
     
-    
 
-
-
-
-    fetch(`http://localhost:5000/api/blog/${UserId}`, {
+   fetch(`http://localhost:5000/api/blog/${UserId}`, {
         method: 'POST', 
         body: data,
         })
@@ -64,6 +69,7 @@ function  SaveBlog(event)
         .catch((error) => {
         console.error('Error:', error);
         });
+        
 }
 )
 

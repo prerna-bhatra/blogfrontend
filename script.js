@@ -101,7 +101,7 @@ function FetchAndShowBlogs()
           // console.log( document.getElementsByClassName('TrendingColumns')[index])
           let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
          // console.log(imgsrc)
-         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p>'
+         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
          // console.log(typeof(item))
          document.getElementsByClassName('TrendingColumns')[index].addEventListener('click',
          function ClickOnReadBlog()
@@ -128,7 +128,37 @@ function FetchAndShowBlogs()
     
     }
 
-    
+
+    function SearchItem()
+    {
+      let SearchItems=document.getElementsByClassName('HashTagItem')
+      let SearchValue=document.getElementById('SearchBox').value
+
+      // console.log(SearchItems)
+      // console.log(Array.isArray(SearchItems))
+
+      for(let i=0;i<SearchItems.length;i++)
+      {
+        let divitem=document.getElementsByClassName('TrendingColumns')[i]
+        //console.log(divitem)
+       let txtValue = divitem.textContent || divitem.innerText || divitem.img;
+        console.log(txtValue)
+        if (txtValue.indexOf(SearchValue) > -1) {
+          divitem.style.display = "";
+      } else {
+          divitem.style.display = "none";
+      }
+      }
+      // SearchItems.forEach(ShowSearch)
+
+      //     function ShowSearch(item,index)
+      //     {
+      //       console.log(item)
+      //     }
+    }
+  
+
+  
  var signout=document.getElementById('SignOut');
  console.log(signout)
  document.getElementById('SignOut').addEventListener('click',

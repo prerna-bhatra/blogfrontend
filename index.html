@@ -209,16 +209,23 @@ p {
 #SIGNOUTBTN li{
   margin-left: 10px;
 }
+.HashTagItem
+{
+  color: white;
+}
 </style>
 <body style="background: #ebebeb ; position: relative;">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="index.html">VComply</a>
+       
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.html">Home</a></li>
+        <li><input id="SearchBox" type="text" class="form-control" placeholder="Search HashTag" onkeyup="SearchItem()"></li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right" id="SIGNOUTBTN">
         <li><button id="newblog" onclick="window.location.href='NewBlog.html'" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> New</button></li>
         <li><button id="newblog" onclick="window.location.href='drafts.html'" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Drafts</button></li>
@@ -235,10 +242,6 @@ p {
   <div class="container" id="BlogsArea">
     <h1><i class="fa fa-line-chart"></i> &nbsp;&nbsp;Trending now</h1>
     <!--top 6 mostly viewed willl be shown here -->
-
-
-
-
 
     <!-- Rest of the blogs-->
     
