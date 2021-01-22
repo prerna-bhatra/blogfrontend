@@ -64,7 +64,7 @@ function FetchDraftswithVersions()
 document.getElementById('version1').addEventListener('click',
 function ChangeBlogDetails()
 {
-  fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
+  fetch(`http://localhost:5000/api/ReadBlog/${blogId}/0`)
   .then(response=>response.json())
   .then(json=>
       {
@@ -121,7 +121,7 @@ function ShowDraftContent()
      if(VerionsArr.length===0)
      {
        //show original content verion 1.0.0
-      fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
+      fetch(`http://localhost:5000/api/ReadBlog/${blogId}/0`)
       .then(response=>response.json())
       .then(json=>
           {

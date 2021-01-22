@@ -113,18 +113,101 @@ function FetchAndShowBlogs()
 
         }
 
-       /*
-       
-        function ShowTrendingBlogs(item,index)
-       
-       // console.log(document.getElementsByClassName('TrendingColumns'))
-        var x= document.getElementsByClassName('TrendingColumns');
-         console.log('unnn', x)
-        
-         
-*/
+      
       })
+
       //show rest of the blogs
+      fetch(`http://localhost:5000/api/ShowNewBlog`)
+      .then(response=>response.json())
+      .then(json=>
+        {
+          console.log(json)
+          let d1 = document.createDocumentFragment();
+          let NewRow=document.createElement('div')
+          NewRow.setAttribute("id","NewRow")
+          NewRow.setAttribute("class","row")
+          json.result.forEach(ShowNewBlogs)
+          function ShowNewBlogs(item,index)
+          {
+           
+              //console.log(index)
+              let NewColumns=document.createElement('div')
+              NewColumns.setAttribute("id","NewColumns")
+              NewColumns.setAttribute("class","col-md-4 NewColumns")
+              NewRow.appendChild(NewColumns)
+              //console.log(TrendingColumns)
+            
+          }    
+          d1.appendChild(NewRow)
+          document.getElementById('NewBlogsArea').appendChild(d1)
+          
+          json.result.forEach(ShowNewBlogs1)
+          function ShowNewBlogs1(item,index)
+          {
+            // console.log( document.getElementsByClassName('TrendingColumns')[index])
+            let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
+           // console.log(imgsrc)
+           document.getElementsByClassName('NewColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
+           // console.log(typeof(item))
+           document.getElementsByClassName('NewColumns')[index].addEventListener('click',
+           function ClickOnReadBlog()
+           {
+          //  console.log(item._id)
+            window.location.href=`ReadBlog.html?BlogId=${item._id}`
+           })
+            console.log(item)
+  
+          }
+  
+        
+        })
+
+//show rest of the blogs which are not trending and new 
+        fetch(`http://localhost:5000/api/blogs`)
+    .then(response=>response.json())
+    .then(json=>
+      {
+        console.log(json)
+        let d2 = document.createDocumentFragment();
+        let AllBlogRow=document.createElement('div')
+        AllBlogRow.setAttribute("id","AllBlogRow")
+        AllBlogRow.setAttribute("class","row")
+        json.result.forEach(ShowAllBlogs)
+        function ShowAllBlogs(item,index)
+        {
+         
+            //console.log(index)
+            let AllBlogColumns=document.createElement('div')
+            AllBlogColumns.setAttribute("id","AllBlogColumns")
+            AllBlogColumns.setAttribute("class","col-md-4 AllBlogColumns")
+            AllBlogRow.appendChild(AllBlogColumns)
+            //console.log(TrendingColumns)
+          
+        }    
+        d2.appendChild(AllBlogRow)
+        document.getElementById('RestBlogsArea').appendChild(d2)
+        
+        json.result.forEach(ShowTrendingBlogs1)
+        function ShowTrendingBlogs1(item,index)
+        {
+          // console.log( document.getElementsByClassName('TrendingColumns')[index])
+          let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
+         // console.log(imgsrc)
+         document.getElementsByClassName('AllBlogColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
+         // console.log(typeof(item))
+         document.getElementsByClassName('AllBlogColumns')[index].addEventListener('click',
+         function ClickOnReadBlog()
+         {
+        //  console.log(item._id)
+          window.location.href=`ReadBlog.html?BlogId=${item._id}`
+         })
+          console.log(item)
+
+        }
+
+      
+      })
+      
     
     }
 
@@ -134,30 +217,80 @@ function FetchAndShowBlogs()
       let SearchItems=document.getElementsByClassName('HashTagItem')
       let SearchValue=document.getElementById('SearchBox').value
 
-      // console.log(SearchItems)
-      // console.log(Array.isArray(SearchItems))
+      //frontend Search
+      // for(let i=0;i<SearchItems.length;i++)
+      // {
+      //   let divitem=document.getElementsByClassName('TrendingColumns')[i]
+      //   //console.log(divitem)
+      //  let txtValue = divitem.textContent || divitem.innerText || divitem.img;
+      //   console.log(txtValue)
+      //   if (txtValue.indexOf(SearchValue) > -1) {
+      //     divitem.style.display = "";
+      // } else {
+      //     divitem.style.display = "none";
+      // }
+      // }
+      const data={hashtag:SearchValue}
 
-      for(let i=0;i<SearchItems.length;i++)
-      {
-        let divitem=document.getElementsByClassName('TrendingColumns')[i]
-        //console.log(divitem)
-       let txtValue = divitem.textContent || divitem.innerText || divitem.img;
-        console.log(txtValue)
-        if (txtValue.indexOf(SearchValue) > -1) {
-          divitem.style.display = "";
-      } else {
-          divitem.style.display = "none";
-      }
-      }
-      // SearchItems.forEach(ShowSearch)
+      fetch(`http://localhost:5000/api/SearchByHashTag`, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(json => {
+        console.log('Success:',  JSON.stringify(json));    
+        console.log(json.data)
+        // data.data.forEach(ReplaceAllWithFound)
 
-      //     function ShowSearch(item,index)
-      //     {
-      //       console.log(item)
-      //     }
+
+
+        let d = document.createDocumentFragment();
+        let TrendingRow=document.createElement('div')
+        TrendingRow.setAttribute("id","TrendingRow")
+        TrendingRow.setAttribute("class","row")
+        json.data.forEach(ShowTrendingBlogs)
+        function ShowTrendingBlogs(item,index)
+        {
+         
+            //console.log(index)
+            let TrendingColumns=document.createElement('div')
+            TrendingColumns.setAttribute("id","TrendingColumns")
+            TrendingColumns.setAttribute("class","col-md-4 TrendingColumns")
+            TrendingRow.appendChild(TrendingColumns)
+            //console.log(TrendingColumns)
+          
+        }    
+        d.appendChild(TrendingRow)
+        document.getElementById('BlogsArea').appendChild(d)
+        
+        json.data.forEach(ShowTrendingBlogs1)
+        function ShowTrendingBlogs1(item,index)
+        {
+          // console.log( document.getElementsByClassName('TrendingColumns')[index])
+          let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
+         // console.log(imgsrc)
+         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
+         // console.log(typeof(item))
+         document.getElementsByClassName('TrendingColumns')[index].addEventListener('click',
+         function ClickOnReadBlog()
+         {
+        //  console.log(item._id)
+          window.location.href=`ReadBlog.html?BlogId=${item._id}`
+         })
+          console.log(item)
+
+        }
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });   
     }
   
 
+    
   
  var signout=document.getElementById('SignOut');
  console.log(signout)

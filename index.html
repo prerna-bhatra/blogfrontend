@@ -211,8 +211,30 @@ p {
 }
 .HashTagItem
 {
-  color: white;
+  display: none;
 }
+
+#NewRow
+{
+  margin-top: 100px;
+}
+#NewColumns
+{
+  cursor: pointer;
+}
+#NewColumns:hover
+{
+  background-color: gray;
+}
+#AllBlogColumns
+{
+  cursor: pointer;
+}
+#AllBlogColumns:hover
+{
+  background-color: gray;
+}
+
 </style>
 <body style="background: #ebebeb ; position: relative;">
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -242,9 +264,17 @@ p {
   <div class="container" id="BlogsArea">
     <h1><i class="fa fa-line-chart"></i> &nbsp;&nbsp;Trending now</h1>
     <!--top 6 mostly viewed willl be shown here -->
-
     <!-- Rest of the blogs-->
-    
+  </div>
+  <div class="container" id="NewBlogsArea">
+    <h1><i class="fa fa-task"></i> &nbsp;&nbsp;what's new</h1>
+    <!--top 6 mostly viewed willl be shown here -->
+    <!-- Rest of the blogs-->
+  </div>
+  <div class="container" id="RestBlogsArea">
+    <h1><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;All Blogs</h1>
+    <!--top 6 mostly viewed willl be shown here -->
+    <!-- Rest of the blogs-->
   </div>
   </div>
  
