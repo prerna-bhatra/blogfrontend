@@ -69,10 +69,19 @@ function loginSubmit()
         })
         .then(response => response.json())
         .then(data => {
-        console.log('Success:',  JSON.stringify(data));
+            if(data.err)
+            {
+                console.log('failed:',  JSON.stringify(data));
+                alert("email or password incorrect")
+            }
+            else{
+                console.log('Success:',  JSON.stringify(data));
+                window.location.href='index.html'
+            }
+        
        // localStorage.setItem("user",JSON.stringify(data))
         
-       // window.location.href='index.html'
+       //
         })
         .catch((error) => {
         console.error('Error:', error);
