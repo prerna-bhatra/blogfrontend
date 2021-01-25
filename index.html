@@ -83,6 +83,13 @@ p {
 	list-style: none;
 	display: inline-block;
 }
+#ShowSpinner
+{
+  font-size: 50px;
+ margin: 50px 50px 500px 500px;
+ display: none
+}
+
 #selectable-text-area
 {
   display: none;
@@ -188,6 +195,16 @@ p {
   background-color: silver;
 }
 
+#SerachedDiv
+{
+  cursor: pointer;
+
+}
+
+#SerachedDiv:hover
+{
+  background-color: gray;
+}
 
 @media(max-width: 992px) {
   .container { padding: 1.25rem 6rem; }
@@ -214,6 +231,11 @@ p {
   display: none;
 }
 
+#HashTagArea
+{
+  margin-top: 40px;
+  display: none;
+}
 #NewRow
 {
   margin-top: 100px;
@@ -261,6 +283,7 @@ p {
     </div>
   </nav>
  <!-- <img  src=""  id="blogimg"> -->
+ <div id="WihoutSearch">
   <div class="container" id="BlogsArea">
     <h1><i class="fa fa-line-chart"></i> &nbsp;&nbsp;Trending now</h1>
     <!--top 6 mostly viewed willl be shown here -->
@@ -276,6 +299,17 @@ p {
     <!--top 6 mostly viewed willl be shown here -->
     <!-- Rest of the blogs-->
   </div>
+</div>
+
+ 
+  <div id="ShowSpinner">
+    
+    <i class="fa fa-spinner" aria-hidden="true"></i>
+  </div>
+  </div>
+
+   <div class="container" id="HashTagArea">
+      <h1>Searched Items</h1>
   </div>
  
 <script src="script.js"></script>

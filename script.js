@@ -216,6 +216,9 @@ function FetchAndShowBlogs()
     {
       let SearchItems=document.getElementsByClassName('HashTagItem')
       let SearchValue=document.getElementById('SearchBox').value
+      document.getElementById('WihoutSearch').style.display='none'
+      document.body.style.backgroundColor ='gray'
+      document.getElementById('ShowSpinner').style.display='block'
 
       //frontend Search
       // for(let i=0;i<SearchItems.length;i++)
@@ -231,7 +234,7 @@ function FetchAndShowBlogs()
       // }
       // }
       const data={hashtag:SearchValue}
-
+      let hashtagArr=[]
       fetch(`http://localhost:5000/api/SearchByHashTag`, {
         method: 'POST', 
         headers: {
@@ -241,57 +244,45 @@ function FetchAndShowBlogs()
         })
         .then(response => response.json())
         .then(json => {
-        console.log('Success:',  JSON.stringify(json));    
-        console.log(json.data)
+          hashtagArr=[...json.data]
+          console.log(hashtagArr)
+          hashtagArr.forEach(ShowHashTagsSearch)
+
+          function ShowHashTagsSearch(item,index)
+          {
+            document.body.style.backgroundColor ='white'
+            document.getElementById('ShowSpinner').style.display='none'
+              document.getElementById('HashTagArea').innerHTML+='<div class="row"><div class="col-md-4 SerachedDiv" id="SerachedDiv"><h4>'+item.BlogHeading +'</h4><p>'+item.BlogContent.slice(0,100) +'</p></div></div>'
+              document.getElementById('HashTagArea').style.display="block"
+              console.log(index)
+          }
+        //console.log('Success:',  JSON.stringify(json));    
+      //  console.log(json.data)
         // data.data.forEach(ReplaceAllWithFound)
+        hashtagArr.forEach(ClickeSearch)
 
-
-
-        let d = document.createDocumentFragment();
-        let TrendingRow=document.createElement('div')
-        TrendingRow.setAttribute("id","TrendingRow")
-        TrendingRow.setAttribute("class","row")
-        json.data.forEach(ShowTrendingBlogs)
-        function ShowTrendingBlogs(item,index)
+        function ClickeSearch(item,index)
         {
-         
-            //console.log(index)
-            let TrendingColumns=document.createElement('div')
-            TrendingColumns.setAttribute("id","TrendingColumns")
-            TrendingColumns.setAttribute("class","col-md-4 TrendingColumns")
-            TrendingRow.appendChild(TrendingColumns)
-            //console.log(TrendingColumns)
-          
-        }    
-        d.appendChild(TrendingRow)
-        document.getElementById('BlogsArea').appendChild(d)
-        
-        json.data.forEach(ShowTrendingBlogs1)
-        function ShowTrendingBlogs1(item,index)
-        {
-          // console.log( document.getElementsByClassName('TrendingColumns')[index])
-          let imgsrc=`http://localhost:5000/api/blogs/img/${item._id}`
-         // console.log(imgsrc)
-         document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
-         // console.log(typeof(item))
-         document.getElementsByClassName('TrendingColumns')[index].addEventListener('click',
-         function ClickOnReadBlog()
-         {
-        //  console.log(item._id)
-          window.location.href=`ReadBlog.html?BlogId=${item._id}`
-         })
-          console.log(item)
-
+          document.getElementsByClassName('SerachedDiv')[index].addEventListener('click',
+            function Clicked()
+            {
+              window.location.href=`ReadBlog.html?BlogId=${item._id}`
+            }
+            )
         }
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        });   
+
+    })
+      console.log(document.getElementById('SearchBox').value)
+    if( document.getElementById('SearchBox').value=='')
+    {
+      document.getElementById('WihoutSearch').style.display='block'
+      document.body.style.backgroundColor ='white'
+      document.getElementById('ShowSpinner').style.display='none'
+      document.getElementById('HashTagArea').style.display='none'
+    }
     }
   
 
-    
-  
  var signout=document.getElementById('SignOut');
  console.log(signout)
  document.getElementById('SignOut').addEventListener('click',
