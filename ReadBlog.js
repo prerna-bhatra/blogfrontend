@@ -155,6 +155,7 @@ selectableTextArea.forEach(elem => {
       .then(data => {
       console.log('Success:',  JSON.stringify(data));
       alert("comment added")
+      window.location.reload;
       })
       .catch((error) => {
       console.error('Error:', error);
