@@ -70,7 +70,7 @@ function loginSubmit()
         .then(response => response.json())
         .then(data => {
         console.log('Success:',  JSON.stringify(data));
-        localStorage.setItem("user",JSON.stringify(data))
+       // localStorage.setItem("user",JSON.stringify(data))
         
        // window.location.href='index.html'
         })
