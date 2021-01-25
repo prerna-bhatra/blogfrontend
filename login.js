@@ -32,7 +32,7 @@ function signupsubmit()
     var userpassword=document.getElementById('password').value;
     console.log(username,useremail,userpassword)
     const data = { name:username,email:useremail,password:userpassword };
-        fetch('http://localhost:5000/api/signup', {
+        fetch('https://desolate-sierra-34755.herokuapp.com/api/signup', {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',
@@ -42,6 +42,7 @@ function signupsubmit()
         .then(response => response.json())
         .then(data => {
         console.log('Success:', data);
+        alert("signup successfull please login")
         })
         .catch((error) => {
         console.error('Error:', error);
