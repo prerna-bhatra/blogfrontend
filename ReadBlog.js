@@ -104,13 +104,13 @@ selectableTextArea.forEach(elem => {
  var x = document.getElementById("CommentBoxArea");
  console.log(x.style)
  console.log(x.style.display)
- if (x.style.display !== "block") {
-    x.style.display = "block";
-    document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-  } else {
-    x.style.display = "none";
-  }
+//  if (x.style.display !== "block") {
+//     x.style.display = "block";
+//     document.body.scrollTop = 0;
+//   document.documentElement.scrollTop = 0;
+//   } else {
+//     x.style.display = "none";
+//   }
 
   const selectedText = document.getSelection().toString().trim();
   var selectedTextData=document.getElementById('SelectedText');
@@ -155,7 +155,7 @@ selectableTextArea.forEach(elem => {
       .then(data => {
       console.log('Success:',  JSON.stringify(data));
       alert("comment added")
-      //window.location.reload;
+      window.location.reload;
       document.getElementById("CommentBoxArea").remove()
       })
       .catch((error) => {
