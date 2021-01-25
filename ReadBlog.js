@@ -155,6 +155,7 @@ selectableTextArea.forEach(elem => {
       .then(data => {
       console.log('Success:',  JSON.stringify(data));
       alert("comment added")
+      console.log("reload page")
       window.location.reload;
      // document.getElementById("CommentBoxArea").remove()
       })
