@@ -76,10 +76,11 @@ function loginSubmit()
             }
             else{
                 console.log('Success:',  JSON.stringify(data));
+                localStorage.setItem("user",JSON.stringify(data))
                 window.location.href='index.html'
             }
         
-       // localStorage.setItem("user",JSON.stringify(data))
+       // 
         
        //
         })
