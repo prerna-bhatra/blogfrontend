@@ -69,6 +69,7 @@ function loginSubmit()
         })
         .then(response => response.json())
         .then(data => {
+            console.log("login api fetch ",data)
             if(data.err)
             {
                 console.log('failed:',  JSON.stringify(data));
