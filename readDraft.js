@@ -121,6 +121,22 @@ function ChangeBlogDetails()
               .then(json=>
                 {
                   alert("deleted")
+                // document.getElementById("AllVersions").innerHTML.reload
+                  VerionsArr.splice(index,1)
+                  console.log(VerionsArr)
+                //  document.getElementsByClassName('deleteVersion1').splice(index,1)
+               // console.log()
+                //   document.getElementById("AllVersions").style.display='none'
+               // Array.from()
+               console.log(document.getElementsByClassName('versionclass'))
+              //  Array.from(document.getElementsByClassName('versionclass')).splice(index,1)
+              //  console.log( Array.from(document.getElementsByClassName('versionclass')).splice(index,1))
+               Array.from(document.getElementsByClassName('versionclass'))[index].remove()
+               Array.from(document.getElementsByClassName('deleteVersion1'))[index].remove()
+                // setTimeout(function()
+                // {  console.log("set time out 3 secondns")
+                //   document.getElementById("AllVersions").style.display='block'
+                // }, 3000);
                 })
             })
           }
@@ -214,10 +230,24 @@ function creaDraft(event)
     })
     .then(response => response.json())
     .then(data => {
-
+      //store the new data into  verionArr
+       VerionsArr.push(data)
+      console.log(VerionsArr)
       console.log('Success:', data);
     alert("Successfully file uploaded")
     document.getElementById('EditForm').reset()
+    document.getElementById("AllVersions").innerHTML+='<div id="version" class="versionclass">'+VerionsArr[VerionsArr.length-1].version+'.0.'+counter1+'&nbsp;&nbsp;&nbsp'+VerionsArr[VerionsArr.length-1].createdAt.slice(0,10)+'</div><div ><button class="deleteVersion1"><i class="fa fa-trash"></i></button></div>'
+    counter1+=1
+  //  document.getElementById("AllVersions").innerHTML.reload(window.location.href + " #here" );
+ // document.getElementById("AllVersions").style.display='none'
+ // document.getElementById("AllVersions").style.display='block'
+
+        // setTimeout(function()
+        // {  console.log("set time out 3 secondns")
+        //   document.getElementById("AllVersions").style.display='block'
+        // }, 3000);
+      
+        //new data is not working because the data is not getting chnaged into array
     })
     .catch((error) => {
     console.error('Error:', error);
