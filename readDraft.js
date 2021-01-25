@@ -44,11 +44,11 @@ function FetchDraftswithVersions()
              console.log(index)
              if(VerionsArr[index].version===1)
              {
-              document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter1+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
+              document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter1+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div><div ><button class="deleteVersion1"><i class="fa fa-trash"></i></button></div>'
               counter1+=1; 
             }
              else{
-              document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div>'
+              document.getElementById('AllVersions').innerHTML+='<div id="version" class="versionclass">'+VerionsArr[index].version+'.0.'+counter+'&nbsp;&nbsp;&nbsp'+VerionsArr[index].createdAt.slice(0,10)+'</div><div><button class="deleteVersion1"><i class="fa fa-trash"></i></button></div>'
               counter+=1;
               if(index<VerionsArr.length-1 && VerionsArr[index+1].version===VerionsArr[index].version+1){
                      counter=0;
@@ -64,7 +64,7 @@ function FetchDraftswithVersions()
 document.getElementById('version1').addEventListener('click',
 function ChangeBlogDetails()
 {
-  fetch(`http://localhost:5000/api/ReadBlog/${blogId}/0`)
+  fetch(`http://localhost:5000/api/ReadBlog/${blogId}`)
   .then(response=>response.json())
   .then(json=>
       {
@@ -109,6 +109,21 @@ function ChangeBlogDetails()
             } 
          )
           }
+
+          VerionsArr.forEach(deleteVersion)
+          function deleteVersion(item,index)
+          {
+            document.getElementsByClassName('deleteVersion1')[index].addEventListener('click',
+            function deleteVersionClick()
+            {
+              fetch(`http://localhost:5000/api/DeleteDraft/${item._id}`)
+              .then(response=>response.json)
+              .then(json=>
+                {
+                  alert("deleted")
+                })
+            })
+          }
       })
 
 }
@@ -127,7 +142,7 @@ function ShowDraftContent()
           {
               console.log(json)
               document.getElementById('Headinginput').value=json.data.BlogHeading;
-             var imgsrc=`http://localhost:5000/api/blogs/img/${blogId}`;
+             var imgsrc=`http://localhost:5000/api/blogs/img/${blogId}/0`;
              document.getElementById('DraftImg').src=imgsrc
               document.getElementById('ContentInput').value=json.data.BlogContent;
   
