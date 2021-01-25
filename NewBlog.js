@@ -56,7 +56,7 @@ function  SaveBlog(event)
     console.log(...data);
     
 
-   fetch(`http://desolate-sierra-34755.herokuapp.com/api/blog/${UserId}`, {
+   fetch(`https://desolate-sierra-34755.herokuapp.com/api/blog/${UserId}`, {
         method: 'POST', 
         body: data,
         })

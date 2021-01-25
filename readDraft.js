@@ -18,7 +18,7 @@ function FetchDraftswithVersions()
     
   console.log("version") 
   console.log(typeof(blogId)) 
-  fetch(`http://desolate-sierra-34755.herokuapp.com/api/EditDraftfetch/${userDataObj.user._id}/${blogId}`)
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/EditDraftfetch/${userDataObj.user._id}/${blogId}`)
   .then(response=>response.json())
   .then(json=>
       {
@@ -64,13 +64,13 @@ function FetchDraftswithVersions()
 document.getElementById('version1').addEventListener('click',
 function ChangeBlogDetails()
 {
-  fetch(`http://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${blogId}`)
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${blogId}`)
   .then(response=>response.json())
   .then(json=>
       {
           console.log(json)
           document.getElementById('Headinginput').value=json.data.BlogHeading;
-         var imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/blogs/img/${blogId}`;
+         var imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${blogId}`;
          document.getElementById('DraftImg').src=imgsrc
           document.getElementById('ContentInput').value=json.data.BlogContent;
 
@@ -86,7 +86,7 @@ function ChangeBlogDetails()
                     //console.log(index)
                     document.getElementById('Headinginput').value=VerionsArr[index].EditedHeading;
                     document.getElementById('ContentInput').value=VerionsArr[index].EditedContent;
-                    var imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/EditDraftimg/${VerionsArr[index]._id}`;
+                    var imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/EditDraftimg/${VerionsArr[index]._id}`;
                     DraftId=VerionsArr[index]._id;
                     console.log(DraftId,VerionsArr[index]._id)
                     console.log("DraftId",DraftId)
@@ -96,7 +96,7 @@ function ChangeBlogDetails()
                     console.log(defaultimg)
                     console.log(typeof(defaultimg))
 
-                 /* fetch(`http://localhost:5000/api/EditDraftimgjson/${VerionsArr[index]._id}`)
+                 /* fetch(`https://localhost:5000/api/EditDraftimgjson/${VerionsArr[index]._id}`)
                     .then(response=>response.json())
                     .then(json=>
                       {
@@ -116,7 +116,7 @@ function ChangeBlogDetails()
             document.getElementsByClassName('deleteVersion1')[index].addEventListener('click',
             function deleteVersionClick()
             {
-              fetch(`http://desolate-sierra-34755.herokuapp.com/api/DeleteDraft/${item._id}`)
+              fetch(`https://desolate-sierra-34755.herokuapp.com/api/DeleteDraft/${item._id}`)
               .then(response=>response.json)
               .then(json=>
                 {
@@ -152,13 +152,13 @@ function ShowDraftContent()
      if(VerionsArr.length===0)
      {
        //show original content verion 1.0.0
-      fetch(`http://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${blogId}/0`)
+      fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${blogId}/0`)
       .then(response=>response.json())
       .then(json=>
           {
               console.log(json)
               document.getElementById('Headinginput').value=json.data.BlogHeading;
-             var imgsrc=`http://localhost:5000/api/blogs/img/${blogId}/0`;
+             var imgsrc=`https://localhost:5000/api/blogs/img/${blogId}/0`;
              document.getElementById('DraftImg').src=imgsrc
               document.getElementById('ContentInput').value=json.data.BlogContent;
   
@@ -167,7 +167,7 @@ function ShowDraftContent()
      else{
        //show latest version content
       document.getElementById('Headinginput').value=VerionsArr[VerionsArr.length-1].EditedHeading;
-      var imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/EditDraftimg/${VerionsArr[VerionsArr.length-1]._id}`;
+      var imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/EditDraftimg/${VerionsArr[VerionsArr.length-1]._id}`;
       document.getElementById('DraftImg').src=imgsrc
        document.getElementById('ContentInput').value=VerionsArr[VerionsArr.length-1].EditedContent;
      }
@@ -224,7 +224,7 @@ function creaDraft(event)
   //this id is added in dbms collection when user does not change image and want to keep the previous image
   data.append("DummyId",DraftId)
   //data.append("draftId",)
-  fetch(`http://desolate-sierra-34755.herokuapp.com/api/EditDraft/${userDataObj.user._id}/${blogId}`, {
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/EditDraft/${userDataObj.user._id}/${blogId}`, {
     method: 'POST', 
     body: data,
     })
@@ -278,7 +278,7 @@ function PublishDraft()
     DraftId=0;
   }
   console.log("DraftId",DraftId)
-  fetch(`http://desolate-sierra-34755.herokuapp.com/api/PublishEditedDraft/${userDataObj.user._id}/${blogId}/${DraftId}`, {
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/PublishEditedDraft/${userDataObj.user._id}/${blogId}/${DraftId}`, {
     method: 'POST', 
     body: data,
     })

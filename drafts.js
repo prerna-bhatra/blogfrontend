@@ -18,7 +18,7 @@ function showDrafts()
     }
     else{
         UserDataObj=JSON.parse(UserData)
-    fetch(`http://desolate-sierra-34755.herokuapp.com/api/drafts/${UserDataObj.user._id}`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/drafts/${UserDataObj.user._id}`)
   .then(response=>response.json())
   .then(json=>
     {
@@ -30,7 +30,7 @@ function showDrafts()
         function fetchImg(item,index)
         {
          
-          BlogImg[index]=`http://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogArray[index]._id}`
+          BlogImg[index]=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogArray[index]._id}`
            
         }
         console.log(BlogImg)

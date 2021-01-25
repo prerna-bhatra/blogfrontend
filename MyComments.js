@@ -7,7 +7,7 @@ function ShowMyComments()
     var userData = localStorage.getItem("user");
     var userDataObj=JSON.parse(userData)
     var UserId=userDataObj.user._id;
-    fetch(`http://desolate-sierra-34755.herokuapp.com/api/MyComments/${UserId}`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/MyComments/${UserId}`)
     .then(response=>response.json())
     .then(json=>
         {

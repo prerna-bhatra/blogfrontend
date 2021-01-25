@@ -59,7 +59,7 @@ function loginSubmit()
     var userpassword=document.getElementById('passwordlogin').value;
     console.log(useremail,userpassword)
     const data = { email:useremail,password:userpassword };
-        fetch('http://desolate-sierra-34755.herokuapp.com/api/signin', {
+        fetch('https://desolate-sierra-34755.herokuapp.com/api/signin', {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',

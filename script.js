@@ -71,7 +71,7 @@ FetchAndShowBlogs()
 function FetchAndShowBlogs()
  {
     //show Trending blogs or top 6 blogs having most views
-    fetch(`http://desolate-sierra-34755.herokuapp.com/api/ShowTrendingBlog`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ShowTrendingBlog`)
     .then(response=>response.json())
     .then(json=>
       {
@@ -99,7 +99,7 @@ function FetchAndShowBlogs()
         function ShowTrendingBlogs1(item,index)
         {
           // console.log( document.getElementsByClassName('TrendingColumns')[index])
-          let imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/blogs/img/${item._id}`
+          let imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${item._id}`
          // console.log(imgsrc)
          document.getElementsByClassName('TrendingColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
          // console.log(typeof(item))
@@ -117,7 +117,7 @@ function FetchAndShowBlogs()
       })
 
       //show rest of the blogs
-      fetch(`http://desolate-sierra-34755.herokuapp.com/api/ShowNewBlog`)
+      fetch(`https://desolate-sierra-34755.herokuapp.com/api/ShowNewBlog`)
       .then(response=>response.json())
       .then(json=>
         {
@@ -145,7 +145,7 @@ function FetchAndShowBlogs()
           function ShowNewBlogs1(item,index)
           {
             // console.log( document.getElementsByClassName('TrendingColumns')[index])
-            let imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/blogs/img/${item._id}`
+            let imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${item._id}`
            // console.log(imgsrc)
            document.getElementsByClassName('NewColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
            // console.log(typeof(item))
@@ -163,7 +163,7 @@ function FetchAndShowBlogs()
         })
 
 //show rest of the blogs which are not trending and new 
-        fetch(`http://desolate-sierra-34755.herokuapp.com/api/blogs`)
+        fetch(`https://desolate-sierra-34755.herokuapp.com/api/blogs`)
     .then(response=>response.json())
     .then(json=>
       {
@@ -191,7 +191,7 @@ function FetchAndShowBlogs()
         function ShowTrendingBlogs1(item,index)
         {
           // console.log( document.getElementsByClassName('TrendingColumns')[index])
-          let imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/blogs/img/${item._id}`
+          let imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${item._id}`
          // console.log(imgsrc)
          document.getElementsByClassName('AllBlogColumns')[index].innerHTML='<img id="blogimg" src='+imgsrc+'></img><h4>'+item.BlogHeading+'</h4><p>'+item.BlogContent.slice(0,50)+'   ...</p><p style="color:red">Read More</p><p class="HashTagItem">'+item.hashTags+'</p>'
          // console.log(typeof(item))
@@ -235,7 +235,7 @@ function FetchAndShowBlogs()
       // }
       const data={hashtag:SearchValue}
       let hashtagArr=[]
-      fetch(`http://desolate-sierra-34755.herokuapp.com/api/SearchByHashTag`, {
+      fetch(`https://desolate-sierra-34755.herokuapp.com/api/SearchByHashTag`, {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json',
@@ -292,7 +292,7 @@ function FetchAndShowBlogs()
  function SignOut()
  {
      console.log("signout")
-     fetch('http://desolate-sierra-34755.herokuapp.com/api/signout')
+     fetch('https://desolate-sierra-34755.herokuapp.com/api/signout')
      .then(response=>
          {
              console.log(response)
