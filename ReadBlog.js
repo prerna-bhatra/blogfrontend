@@ -35,7 +35,7 @@ function ReadBlog()
     console.log(ViewedValue)
     
     
-    fetch(`http://localhost:5000/api/ReadBlog/${BlogId}/${ViewedValue}`)
+    fetch(`http://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${ViewedValue}`)
     .then(response=>response.json())
     .then(json=>
         {
@@ -54,7 +54,7 @@ function ReadBlog()
             document.getElementById('BlogDetails').appendChild(d)
             console.log(d)
             document.getElementById('BlogHeaderId').textContent=json.data.BlogHeading;
-            var imgsrc=`http://localhost:5000/api/blogs/img/${BlogId}`;
+            var imgsrc=`http://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogId}`;
            document.getElementById('imgId').src=imgsrc
             document.getElementById('MainPara').textContent=json.data.BlogContent;
           //  document.getElementById('views').textContent+=json.data.viewedBy.length+"  views"
@@ -144,7 +144,7 @@ selectableTextArea.forEach(elem => {
     
     const data={CommentName:comment,UserName:userDataObj.user.name,HighlightTextYcordinator:pos.y,HighlightTextRangeStartOffest:RangeOfText.startOffset, HighlightTextRangeEndOffest:RangeOfText.endOffset,BlogId:BlogId,CommentPrivacy:Privacy}
     console.log(data)
-  fetch(`http://localhost:5000/api/comment/${UserId}`, {
+  fetch(`http://desolate-sierra-34755.herokuapp.com/api/comment/${UserId}`, {
       method: 'POST', // or 'PUT'
       headers: {
           'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ function ReadComments()
     y.style.display='block'
   
   console.log(BlogId)
-  fetch(`http://localhost:5000/api/comments/${BlogId}`)
+  fetch(`http://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`)
   .then(response => response.json())
   .then(
     json=>{
@@ -302,7 +302,7 @@ function ShowMyComments()
     var userDataObj=JSON.parse(userData)
     var UserId=userDataObj.user._id;
     
-    fetch(`http://localhost:5000/api/MyComments/${UserId}/${BlogId}`)
+    fetch(`http://desolate-sierra-34755.herokuapp.com/api/MyComments/${UserId}/${BlogId}`)
     .then(response=>response.json())
     .then(json=>
         {
