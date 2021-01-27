@@ -1,6 +1,7 @@
-var url_string = window.location.href
-var url = new URL(url_string);
-var BlogId = url.searchParams.get("BlogId");
+let url_string = window.location.href
+let url = new URL(url_string);
+let BlogId = url.searchParams.get("BlogId");
+let client = new ClientJS();
 console.log(BlogId);
 CheckLogin()
 ReadBlog()
@@ -12,30 +13,32 @@ function CheckLogin()
   {
     document.getElementById('MyCommentsBtn').style.display='inline'
   }
-
-
 }
 
 function ReadBlog()
 {
     //first check if user has viewed blog or not in locastorage store  view and blog 
     //id if not then save if then send 0 in view
-  
+
     let userData=JSON.parse(window.localStorage.getItem('user'))
     console.log(userData)
     let ViewedValue=0
+    // Get the client's fingerprint id
+      let fingerprint = client.getFingerprint();
+      // Print the 32bit hash id to the console
+      console.log(fingerprint);
    
     const FindBlogIndex = Object.keys(localStorage)[Object.values(localStorage).indexOf(BlogId)];
     //console.log( FindBlogIndex)
     if(FindBlogIndex==undefined)
     {
       ViewedValue=1;
-      localStorage.setItem(`blog${localStorage.length+1}`,BlogId)
+      localStorage.setItem(`layer${localStorage.length+1}`,BlogId)
     }
     console.log(ViewedValue)
     
     
-    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${ViewedValue}`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`)
     .then(response=>response.json())
     .then(json=>
         {
