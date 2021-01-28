@@ -38,7 +38,15 @@ function ReadBlog()
     // console.log(ViewedValue)
     
     
-    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`,
+    {
+      method: 'POST', // or 'PUT'
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      }
+    )
     .then(response=>response.json())
     .then(json=>
         {
@@ -178,14 +186,7 @@ function ReadComments()
     y.style.display='block'
   
   console.log(BlogId)
-  fetch(`https://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`,
-  {
-    method: 'POST', // or 'PUT'
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-    })
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`)
   .then(response => response.json())
   .then(
     json=>{
