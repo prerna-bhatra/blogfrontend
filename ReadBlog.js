@@ -178,7 +178,14 @@ function ReadComments()
     y.style.display='block'
   
   console.log(BlogId)
-  fetch(`https://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`)
+  fetch(`https://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`,
+  {
+    method: 'POST', // or 'PUT'
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+    })
   .then(response => response.json())
   .then(
     json=>{
