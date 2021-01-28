@@ -49,7 +49,6 @@ function ReadBlog()
     .then(json=>
         {
             console.log(json)
-
             let d=document.createDocumentFragment()
             let BlogHeaderTag=document.createElement('H4')
             BlogHeaderTag.setAttribute("id","BlogHeaderId")
@@ -71,7 +70,8 @@ function ReadBlog()
         })
         .catch(error=>
           {
-            alert("blog not exists")
+            
+            //alert("blog not exists")
             window.history.back() 
           })
         
