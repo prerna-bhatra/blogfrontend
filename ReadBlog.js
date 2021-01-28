@@ -26,7 +26,7 @@ function ReadBlog()
     // Get the client's fingerprint id
       let fingerprint = client.getFingerprint();
       // Print the 32bit hash id to the console
-      console.log(fingerprint);
+      console.log("fingerprint",fingerprint);
    
     // const FindBlogIndex = Object.keys(localStorage)[Object.values(localStorage).indexOf(BlogId)];
     // //console.log( FindBlogIndex)
