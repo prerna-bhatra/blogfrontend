@@ -147,10 +147,10 @@ function showDrafts()
               
                 var options = {
                   hAxis: {
-                    title: 'Time'
+                    title: 'Week Number'
                   },
                   vAxis: {
-                    title: 'Popularity'
+                    title: 'Views'
                   },
                   backgroundColor: '#f1f8e9'
                 };
