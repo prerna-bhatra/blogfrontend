@@ -62,7 +62,7 @@ function showDrafts()
                 function ReadDraft()
                 {
                   console.log(index)
-                  window.location.href=`readDraft.html?blogId=${BlogArray[index]._id}` 
+                  window.location.href=`ReadBlog.html?BlogId=${BlogArray[index]._id}` 
                 }
               )
           }
