@@ -1,4 +1,14 @@
+var url_string = window.location.href
+var url = new URL(url_string);
+var PrevUrl = url.searchParams.get("PrevUrl");
+console.log(PrevUrl);
 
+console.log( localStorage.getItem('user'))
+
+if( localStorage.getItem('user')!=null && PrevUrl==null)
+{
+    window.location.href='index.html'
+}
 
 document.getElementById('signClick').addEventListener('click',(event)=>{
     event.stopPropagation();
@@ -76,9 +86,19 @@ function loginSubmit()
                 alert("email or password incorrect")
             }
             else{
-                console.log('Success:',  JSON.stringify(data));
-                localStorage.setItem("user",JSON.stringify(data))
-                window.location.href='index.html'
+                if(PrevUrl!==null)
+                {
+                    localStorage.setItem("user",JSON.stringify(data))
+                    window.location.href=PrevUrl
+
+                }
+                else
+                {   
+                    console.log('Success:',  JSON.stringify(data));
+                    localStorage.setItem("user",JSON.stringify(data))
+                    window.location.href='index.html'
+                }
+                
             }
         
        // 

@@ -146,6 +146,12 @@ selectableTextArea.forEach(elem => {
     console.log(typeof(userData))
     var userDataObj=JSON.parse(userData)
     console.log(userDataObj)
+    if(userDataObj==null)
+    {
+      alert("please Login to make comment")
+     const PrevUrl=window.location.href
+     window.location.href=`login.html?PrevUrl=${PrevUrl}`
+    }
     console.log(userDataObj.user._id)
     var comment=document.getElementById("Comment").value;
     console.log(document.getElementById("CommentPrivacy"))
