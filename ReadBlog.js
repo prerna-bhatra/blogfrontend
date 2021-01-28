@@ -17,8 +17,7 @@ function CheckLogin()
 
 function ReadBlog()
 {
-    //first check if user has viewed blog or not in locastorage store  view and blog 
-    //id if not then save if then send 0 in view
+   
 
     let userData=JSON.parse(window.localStorage.getItem('user'))
     console.log(userData)
@@ -70,6 +69,11 @@ function ReadBlog()
           //  document.getElementById('views').textContent+=json.data.viewedBy.length+"  views"
 
         })
+        .catch(error=>
+          {
+            alert("blog not exists")
+            window.history.back() 
+          })
         
 }
 
