@@ -64,7 +64,7 @@ function  SaveBlog(event)
     data.append('UserName',UserName)
     data.append('hashTags',HashTagsArray)
     console.log(...data);
-    
+    //6013d4b80f328c0004466709
 
    fetch(`https://desolate-sierra-34755.herokuapp.com/api/blog/${UserId}`, {
         method: 'POST', 
