@@ -1,6 +1,7 @@
 var url_string = window.location.href
 var url = new URL(url_string);
 var PrevUrl = url.searchParams.get("PrevUrl");
+let client = new ClientJS();
 console.log(PrevUrl);
 
 console.log( localStorage.getItem('user'))
@@ -63,6 +64,7 @@ function signupsubmit()
 
 function loginSubmit()
 {
+    let fingerprint = client.getFingerprint();
     console.log("login")
     event.stopPropagation();
     event.preventDefault();
@@ -70,7 +72,8 @@ function loginSubmit()
     var userpassword=document.getElementById('passwordlogin').value;
     console.log(useremail,userpassword)
     const data = { email:useremail,password:userpassword };
-        fetch('https://desolate-sierra-34755.herokuapp.com/api/signin', {
+
+        fetch(`http://localhost:5000/api/signin/${fingerprint}`, {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',

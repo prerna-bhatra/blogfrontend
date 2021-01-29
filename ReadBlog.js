@@ -37,7 +37,7 @@ function ReadBlog()
     // console.log(ViewedValue)
     
     
-    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`,
+    fetch(`http://localhost:5000/api/ReadBlog/${BlogId}/${fingerprint}`,
     {
       method: 'POST', // or 'PUT'
       headers: {
@@ -48,31 +48,43 @@ function ReadBlog()
     .then(response=>response.json())
     .then(json=>
         {
+          
             console.log(json)
-            let d=document.createDocumentFragment()
-            let BlogHeaderTag=document.createElement('H4')
-            BlogHeaderTag.setAttribute("id","BlogHeaderId")
-            let BlogContentTag=document.createElement('P')
-            BlogContentTag.setAttribute("id","MainPara")
-            let imgTag=document.createElement('img')
-            imgTag.setAttribute("id","imgId")
-            d.appendChild(BlogHeaderTag)
-            d.appendChild(imgTag)
-            d.appendChild(BlogContentTag)
-            document.getElementById('BlogDetails').appendChild(d)
-            console.log(d)
-            document.getElementById('BlogHeaderId').textContent=json.data.BlogHeading;
-            var imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogId}`;
-           document.getElementById('imgId').src=imgsrc
-            document.getElementById('MainPara').textContent=json.data.BlogContent;
-          //  document.getElementById('views').textContent+=json.data.viewedBy.length+"  views"
+            console.log("data",json.data,"Login",json.Login)
+            if(json.data!==undefined)
+            {
+              let d=document.createDocumentFragment()
+              let BlogHeaderTag=document.createElement('H4')
+              BlogHeaderTag.setAttribute("id","BlogHeaderId")
+              let BlogContentTag=document.createElement('P')
+              BlogContentTag.setAttribute("id","MainPara")
+              let imgTag=document.createElement('img')
+              imgTag.setAttribute("id","imgId")
+              d.appendChild(BlogHeaderTag)
+              d.appendChild(imgTag)
+              d.appendChild(BlogContentTag)
+              document.getElementById('BlogDetails').appendChild(d)
+              console.log(d)
+              document.getElementById('BlogHeaderId').textContent=json.data.BlogHeading;
+              var imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogId}`;
+             document.getElementById('imgId').src=imgsrc
+              document.getElementById('MainPara').textContent=json.data.BlogContent;
+            //  document.getElementById('views').textContent+=json.data.viewedBy.length+"  views"
+            }
+           else if(json.Login!==undefined)
+           {
+             alert(json.Login);
+             window.location.href='login.html'
+             
+           }
 
         })
         .catch(error=>
           {
             
-            //alert("blog not exists")
-            window.history.back() 
+            alert("blog not exists")
+           // window.history.back() 
+           console.log("Error",error)
           })
         
 }
