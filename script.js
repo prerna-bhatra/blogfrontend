@@ -4,7 +4,7 @@
 
 'use strict';
 CheckLogin()
-
+let client = new ClientJS();
 function CheckLogin()
 {
   var UserLogin = localStorage.getItem("user");
@@ -385,18 +385,14 @@ function FetchAndShowBlogs()
    
   
 
-
-
-
-
-
  var signout=document.getElementById('SignOut');
  console.log(signout)
  document.getElementById('SignOut').addEventListener('click',
  function SignOut()
  {
+  let fingerprint = client.getFingerprint();
      console.log("signout")
-     fetch('https://desolate-sierra-34755.herokuapp.com/api/signout')
+     fetch(`https://desolate-sierra-34755.herokuapp.com/api/signout/${fingerprint}` )
      .then(response=>
          {
              console.log(response)
