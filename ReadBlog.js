@@ -37,7 +37,7 @@ function ReadBlog()
     // console.log(ViewedValue)
     
     
-    fetch(`https://desolate-sierra-34755.herokuapp.com/ReadBlog/${BlogId}/${fingerprint}`,
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`,
     {
       method: 'POST', // or 'PUT'
       headers: {
