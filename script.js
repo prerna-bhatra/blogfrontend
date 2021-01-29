@@ -212,80 +212,7 @@ function FetchAndShowBlogs()
     }
 
 
-   /* function SearchItem()
-    {
-      let SearchItems=document.getElementsByClassName('HashTagItem')
-      let SearchValue=document.getElementById('SearchBox').value
-      document.getElementById('WihoutSearch').style.display='none'
-      document.body.style.backgroundColor ='gray'
-      document.getElementById('ShowSpinner').style.display='block'
-
-      //frontend Search
-      // for(let i=0;i<SearchItems.length;i++)
-      // {
-      //   let divitem=document.getElementsByClassName('TrendingColumns')[i]
-      //   //console.log(divitem)
-      //  let txtValue = divitem.textContent || divitem.innerText || divitem.img;
-      //   console.log(txtValue)
-      //   if (txtValue.indexOf(SearchValue) > -1) {
-      //     divitem.style.display = "";
-      // } else {
-      //     divitem.style.display = "none";
-      // }
-      // }
-      const data={hashtag:SearchValue}
-      let hashtagArr=[]
-      fetch(`https://desolate-sierra-34755.herokuapp.com/api/SearchByHashTag`, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(json => {
-          document.getElementById('HashTagArea').innerHTML=' '
-          console.log(json.data)
-        //  console.log()
-          hashtagArr=[...json.data]
-          console.log(hashtagArr)
-          hashtagArr.forEach(ShowHashTagsSearch)
-
-          function ShowHashTagsSearch(item,index)
-          {
-            document.body.style.backgroundColor ='white'
-            document.getElementById('ShowSpinner').style.display='none'
-              document.getElementById('HashTagArea').innerHTML+='<div class="row"><div class="col-md-4 SerachedDiv" id="SerachedDiv"><h4>'+item.BlogHeading +'</h4><p>'+item.BlogContent.slice(0,100) +'</p></div></div>'
-              document.getElementById('HashTagArea').style.display="block"
-              console.log(index)
-          }
-        //console.log('Success:',  JSON.stringify(json));    
-      //  console.log(json.data)
-        // data.data.forEach(ReplaceAllWithFound)
-        hashtagArr.forEach(ClickeSearch)
-
-        function ClickeSearch(item,index)
-        {
-          document.getElementsByClassName('SerachedDiv')[index].addEventListener('click',
-            function Clicked()
-            {
-              window.location.href=`ReadBlog.html?BlogId=${item._id}`
-            }
-            )
-        }
-
-    })
-      console.log(document.getElementById('SearchBox').value)
-    if( document.getElementById('SearchBox').value=='')
-    {
-      document.getElementById('WihoutSearch').style.display='block'
-      document.body.style.backgroundColor ='white'
-      document.getElementById('ShowSpinner').style.display='none'
-      document.getElementById('HashTagArea').style.display='none'
-    }
-    }
-  
-    */
+ 
 
    function debounce(func, wait, immediate) {
     var timeout;
@@ -316,19 +243,6 @@ function FetchAndShowBlogs()
       document.body.style.backgroundColor ='gray'
       document.getElementById('ShowSpinner').style.display='block'
 
-      //frontend Search
-      // for(let i=0;i<SearchItems.length;i++)
-      // {
-      //   let divitem=document.getElementsByClassName('TrendingColumns')[i]
-      //   //console.log(divitem)
-      //  let txtValue = divitem.textContent || divitem.innerText || divitem.img;
-      //   console.log(txtValue)
-      //   if (txtValue.indexOf(SearchValue) > -1) {
-      //     divitem.style.display = "";
-      // } else {
-      //     divitem.style.display = "none";
-      // }
-      // }
       const data={hashtag:SearchValue}
       let hashtagArr=[]
       fetch(`https://desolate-sierra-34755.herokuapp.com/api/SearchByHashTag`, {
@@ -342,7 +256,7 @@ function FetchAndShowBlogs()
         .then(json => {
           document.getElementById('HashTagArea').innerHTML=' '
           console.log(json.data)
-        //  console.log()
+    
           hashtagArr=[...json.data]
           console.log(hashtagArr)
           hashtagArr.forEach(ShowHashTagsSearch)
@@ -355,9 +269,7 @@ function FetchAndShowBlogs()
               document.getElementById('HashTagArea').style.display="block"
               console.log(index)
           }
-        //console.log('Success:',  JSON.stringify(json));    
-      //  console.log(json.data)
-        // data.data.forEach(ReplaceAllWithFound)
+        
         hashtagArr.forEach(ClickeSearch)
 
         function ClickeSearch(item,index)
