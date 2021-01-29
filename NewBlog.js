@@ -41,12 +41,19 @@ function  SaveBlog(event)
     //
     let HashTagsValue=document.getElementById('hashTagInput').value;
     let HashTagsArray=[]
-    
+
+
+    ImgStr=document.getElementById('imgtag').files[0];
+    console.log(ImgStr)
+
+    if(ImgStr.name.includes(".jpeg") ||  ImgStr.name.includes(".jpg") || ImgStr.name.includes(".png") || ImgStr.name.includes(".gif"))
+    {
     HashTagsArray=[...HashTagsValue.split("#")]
     console.log("arr type",typeof(HashTagsArray))
     console.log(HashTagsArray)
     let data = new FormData();
     data.append('BlogImg', document.getElementById('imgtag').files[0])
+    
     data.append('SaveMode', SaveModev);
     data.append('BlogHeading',HeadingValue)
     data.append('BlogContent',ContentValue)
@@ -69,6 +76,11 @@ function  SaveBlog(event)
         .catch((error) => {
         console.error('Error:', error);
         });
+      }
+      else
+      {
+        alert('upload only jpeg ,png or jpeg file')
+      }
         
 }
 )
