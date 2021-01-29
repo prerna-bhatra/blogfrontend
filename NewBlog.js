@@ -44,9 +44,12 @@ function  SaveBlog(event)
 
 
     ImgStr=document.getElementById('imgtag').files[0];
-    console.log(ImgStr)
+    //console.log(ImgStr)
+  if(blogimg!=undefined)
+  {
 
-    if(ImgStr.name.includes(".jpeg") ||  ImgStr.name.includes(".jpg") || ImgStr.name.includes(".png") || ImgStr.name.includes(".gif"))
+
+    if( ImgStr.name.includes(".jpeg") ||  ImgStr.name.includes(".jpg") || ImgStr.name.includes(".png") || ImgStr.name.includes(".gif"))
     {
     HashTagsArray=[...HashTagsValue.split("#")]
     console.log("arr type",typeof(HashTagsArray))
@@ -81,6 +84,11 @@ function  SaveBlog(event)
       {
         alert('upload only jpeg ,png or jpeg file')
       }
+    }
+    else
+    {
+      alert('image is manadtory')
+    }
         
 }
 )
