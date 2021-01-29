@@ -398,6 +398,10 @@ function FetchAndShowBlogs()
              console.log(response)
              localStorage.removeItem("user");
             //window.location.href='index.html'
+            if(response.ok==true)
+            {
+              window.location.href='index.html'
+            }
          }
  
      )
