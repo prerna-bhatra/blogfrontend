@@ -137,9 +137,10 @@ selectableTextArea.forEach(elem => {
   
   //publish comment and save into database
   document.getElementById('PublishBtn').addEventListener('click',
-  function PublishComment()
+  function PublishComment(event)
   {
      // alert('comment') 
+     event.preventDefault()
     console.log(pos,RangeOfText)
     var x = document.getElementById("CommentBoxArea");
     x.style.display = "none";
@@ -216,16 +217,7 @@ function ReadComments()
         document.getElementById('CommentsList').innerHTML+='<li class="Comments">'+element.UserName+'</br>'+element.CommentName+'</li>';
         });
 
-    // const com=document.getElementsByClassName('Comments')[0];
-    // console.log(com)
-    /*document.querySelectorAll('Comments').forEach(item => {
-      item.addEventListener('click', 
-      function ClickComment() {
-        alert("hhj")
-      })
-    })
-*/
-
+  
 console.log(CommentsArray.length)
 for(let i=0;i<CommentsArray.length;i++)
 {
