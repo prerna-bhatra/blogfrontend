@@ -65,12 +65,12 @@ function signupsubmit()
 function loginSubmit()
 {
     let fingerprint = client.getFingerprint();
-    console.log("login")
+    //console.log("login")
     event.stopPropagation();
     event.preventDefault();
     var useremail=document.getElementById('emailllogin').value;
     var userpassword=document.getElementById('passwordlogin').value;
-    console.log(useremail,userpassword)
+   // console.log(useremail,userpassword)
     const data = { email:useremail,password:userpassword };
 
         fetch(`https://desolate-sierra-34755.herokuapp.com/api/signin/${fingerprint}`, {
@@ -82,10 +82,10 @@ function loginSubmit()
         })
         .then(response => response.json())
         .then(data => {
-            console.log("login api fetch ",data)
+            //console.log("login api fetch ",data)
             if(data.err)
             {
-                console.log('failed:',  JSON.stringify(data));
+              //  console.log('failed:',  JSON.stringify(data));
                 alert("email or password incorrect")
             }
             else{
@@ -97,7 +97,7 @@ function loginSubmit()
                 }
                 else
                 {   
-                    console.log('Success:',  JSON.stringify(data));
+                  //  console.log('Success:',  JSON.stringify(data));
                     localStorage.setItem("user",JSON.stringify(data))
                     window.location.href='index.html'
                 }
@@ -109,7 +109,7 @@ function loginSubmit()
        //
         })
         .catch((error) => {
-        console.error('Error:', error);
+        //console.error('Error:', error);
         });
 
 }

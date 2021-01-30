@@ -276,6 +276,7 @@
         </ul>
       </div>
       </div>
+
       <div id="twitter-share-btn">
           <ul>
               <li><button><i class="fa fa-pencil"></i></button></li>
@@ -286,13 +287,15 @@
     
       <div id="CommentBoxArea">
           <p id="SelectedText"></p>
+          <form method="POST" id="CommentForm">
           <input type="text" placeholder="Your Comment" id="Comment">
           <select id="CommentPrivacy">
             <option value=0>Private</option>
             <option value=1>Public</option>
           </select>
           <br/>
-          <button   onclick="PublishComment(e)"  value="publish" id="PublishBtn">
+          <button  type="submit" id="PublishBtn">Publish</button>
+        </form>
       </div>
       <div class="CommentBody"  id="CommentBody">
       </div>

@@ -1,4 +1,4 @@
-console.log("drafts")
+//console.log("drafts")
 const UserData=window.localStorage.getItem('user')
 showDrafts()
 
@@ -26,13 +26,13 @@ function showDrafts()
     }
     else{
         UserDataObj=JSON.parse(UserData)
-    fetch(`http://localhost:5000/api/MyBlogs/${UserDataObj.user._id}`)
+    fetch(`https://desolate-sierra-34755.herokuapp.com/api/MyBlogs/${UserDataObj.user._id}`)
   .then(response=>response.json())
   .then(json=>
     {
-        console.log(json)
+       // console.log(json)
         BlogArray=[...json.data]
-        console.log(BlogArray)
+        //console.log(BlogArray)
         BlogArray.forEach(fetchImg)
         
         function fetchImg(item,index)
@@ -41,7 +41,7 @@ function showDrafts()
           BlogImg[index]=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogArray[index]._id}`
            
         }
-        console.log(BlogImg)
+      //  console.log(BlogImg)
 
         BlogArray.forEach(showdrafts)
 
@@ -57,11 +57,11 @@ function showDrafts()
             
           function ClickDraft(item,index)
           {
-            console.log(index)
+            //console.log(index)
               document.getElementsByClassName('DraftClass')[index].addEventListener('click',
                 function ReadDraft()
                 {
-                  console.log(index)
+                //  console.log(index)
                   window.location.href=`ReadBlog.html?BlogId=${BlogArray[index]._id}` 
                 }
               )
@@ -76,10 +76,10 @@ function showDrafts()
             document.getElementsByClassName('viewstats')[index].addEventListener('click',
             function showGraph()
             {
-              console.log("click")
+             // console.log("click")
               Week=[...BlogArray[index].ViewStats]
          
-              console.log(Week)
+            //  console.log(Week)
 
               Week.forEach(d=>{
                 d.dateObj =  moment(d.dateonview);  
@@ -105,9 +105,9 @@ function showDrafts()
                 return buildData(groupedData, groupKey)
               }
               //console.log(groupAndBuild(Week,'month','month'))
-              console.log(groupAndBuild(Week,'week','week'))
-              console.log(Array.isArray(groupAndBuild(Week,'week','week')))
-              console.log(GraphData)
+             // console.log(groupAndBuild(Week,'week','week'))
+             // console.log(Array.isArray(groupAndBuild(Week,'week','week')))
+             // console.log(GraphData)
               //console.log(result)
 
               google.charts.load('44', {
@@ -128,7 +128,7 @@ function showDrafts()
                 ArrFRomGrph[index]= Object.values(GraphData[index])
               }
                 
-              console.log(ArrFRomGrph)
+             // console.log(ArrFRomGrph)
                 var c = [
                   [new Date('3/16/2016'), 3],
                   [new Date('3/17/2016'), 5],

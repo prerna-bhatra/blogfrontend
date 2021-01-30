@@ -3,7 +3,7 @@ let url = new URL(url_string);
 let BlogId = url.searchParams.get("BlogId");
 let client = new ClientJS();
 let StopMultiExce=0;
-console.log(BlogId);
+//console.log(BlogId);
 CheckLogin()
 ReadBlog()
 
@@ -28,12 +28,12 @@ function ReadBlog()
    
 
     let userData=JSON.parse(window.localStorage.getItem('user'))
-    console.log(userData)
+   // console.log(userData)
     let ViewedValue=0
     // Get the client's fingerprint id
       let fingerprint = client.getFingerprint();
       // Print the 32bit hash id to the console
-      console.log("fingerprint",fingerprint);
+      //console.log("fingerprint",fingerprint);
    
     fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`,
     {
@@ -47,8 +47,8 @@ function ReadBlog()
     .then(json=>
         {
           
-            console.log(json)
-            console.log("data",json.data,"Login",json.Login)
+           // console.log(json)
+            //console.log("data",json.data,"Login",json.Login)
             if(json.data!==undefined)
             {
               let d=document.createDocumentFragment()
@@ -62,7 +62,7 @@ function ReadBlog()
               d.appendChild(imgTag)
               d.appendChild(BlogContentTag)
               document.getElementById('BlogDetails').appendChild(d)
-              console.log(d)
+              //console.log(d)
               document.getElementById('BlogHeaderId').textContent=json.data.BlogHeading;
               var imgsrc=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogId}`;
              document.getElementById('imgId').src=imgsrc
@@ -152,32 +152,32 @@ selectableTextArea.forEach(elem => {
   {
      // alert('comment') 
      
-     console.log("make comment")
+    //  console.log("make comment")
      event.preventDefault()
-    console.log(pos,RangeOfText)
+    // console.log(pos,RangeOfText)
     var x = document.getElementById("CommentBoxArea");
     x.style.display = "none";
     var userData = localStorage.getItem("user");
-    console.log(userData)
-    console.log(typeof(userData))
+    // console.log(userData)
+    // console.log(typeof(userData))
     var userDataObj=JSON.parse(userData)
-    console.log(userDataObj)
+    //console.log(userDataObj)
     if(userDataObj==null)
     {
       alert("please Login to make comment")
      const PrevUrl=window.location.href
      window.location.href=`login.html?PrevUrl=${PrevUrl}`
     }
-    console.log(userDataObj.user._id)
+    // console.log(userDataObj.user._id)
     var comment=document.getElementById("Comment").value;
-    console.log(document.getElementById("CommentPrivacy"))
-    console.log(document.getElementById("CommentPrivacy").value)
+    // console.log(document.getElementById("CommentPrivacy"))
+    // console.log(document.getElementById("CommentPrivacy").value)
     var Privacy=document.getElementById("CommentPrivacy").value;
-    console.log(Privacy)
-    console.log(comment)
+    // console.log(Privacy)
+    // console.log(comment)
     const UserId=userDataObj.user._id  
     const data={CommentName:comment,UserName:userDataObj.user.name,HighlightTextYcordinator:pos.y,HighlightTextRangeStartOffest:RangeOfText.startOffset, HighlightTextRangeEndOffest:RangeOfText.endOffset,BlogId:BlogId,CommentPrivacy:Privacy}
-    console.log(data)
+   // console.log(data)
   fetch(`https://desolate-sierra-34755.herokuapp.com/api/comment/${UserId}`, {
       method: 'POST', // or 'PUT'
       headers: {
@@ -187,14 +187,15 @@ selectableTextArea.forEach(elem => {
       })
       .then(response => response.json())
       .then(data => {
-      console.log('Success:',  JSON.stringify(data));
+        document.getElementById('Comment').value=''
+      //console.log('Success:',  JSON.stringify(data));
       alert("comment added")
       StopMultiExce=1;
-      console.log("STOPMULTIEXEC",StopMultiExce)
+     // console.log("STOPMULTIEXEC",StopMultiExce)
      
       })
       .catch((error) => {
-      console.error('Error:', error);
+     // console.error('Error:', error);
       });
   })
 }
@@ -209,32 +210,32 @@ function ReadComments()
      x.style.display='none'
     y.style.display='block'
   
-  console.log(BlogId)
+ // console.log(BlogId)
   fetch(`https://desolate-sierra-34755.herokuapp.com/api/comments/${BlogId}`)
   .then(response => response.json())
   .then(
     json=>{
-      console.log(json)
+      //console.log(json)
       MyCommentsArray=[]
       document.getElementById('MyCommentsList').innerHTML=' '
       document.getElementById('CommentsList').innerHTML=' '
-      console.log(MyCommentsArray)
+     // console.log(MyCommentsArray)
 		CommentsArray=[...json]
-		console.log("copy array")
-		console.log(typeof(json))
-    console.log(CommentsArray)
+		// console.log("copy array")
+		// console.log(typeof(json))
+    // console.log(CommentsArray)
    
     CommentsArray.forEach((element,index) => {
-        console.log(element)
+       // console.log(element)
         
         document.getElementById('CommentsList').innerHTML+='<li class="Comments">'+element.UserName+'</br>'+element.CommentName+'</li>';
         });
 
   
-console.log(CommentsArray.length)
+ //console.log(CommentsArray.length)
 for(let i=0;i<CommentsArray.length;i++)
 {
-  console.log(i)
+  //console.log(i)
   document.getElementsByClassName('Comments')[i].addEventListener('click',
   function ClickComment()
   {
@@ -242,7 +243,7 @@ for(let i=0;i<CommentsArray.length;i++)
     //alert(CommentsArray[i].HighlightTextYcordinator)
     const ele=document.getElementById("MainPara")
     const MainParaEleArray=document.getElementsByTagName("p")
-    console.log(MainParaEleArray)
+   // console.log(MainParaEleArray)
     const textNode = ele.childNodes[0];
     scrollTo(0,(CommentsArray[i].HighlightTextYcordinator))
     
@@ -265,7 +266,7 @@ for(let i=0;i<CommentsArray.length;i++)
      //window.getSelection().removeAllRanges();
         var parent = MainParaEle[ 0 ].parentNode;
        
-        console.log(parent)
+        //console.log(parent)
         while( MainParaEle[ 0 ].firstChild ) {
           parent.insertBefore(  MainParaEle[ 0 ].firstChild, MainParaEle[ 0 ] );
       }
@@ -309,7 +310,7 @@ function shareTwitter()
    const selectedText = document.getSelection().toString().trim();
    //	alert(selectedText)
  // documentMouseDown()
- console.log(selectedText)
+// console.log(selectedText)
  if (selectedText != "") {
   window.open('https://twitter.com/intent/tweet?text='+encodeURI(selectedText) + '&url=' + encodeURI(document.URL));
 }
@@ -325,7 +326,7 @@ function ShowMyComments()
     var y=document.getElementById('MyComments')
       x.style.display='none'
     y.style.display='block'
-    console.log(BlogId)
+    //console.log(BlogId)
     
    
     var userData = localStorage.getItem("user");
@@ -336,21 +337,21 @@ function ShowMyComments()
     .then(response=>response.json())
     .then(json=>
         {
-            console.log(json,typeof(json))
+          //  console.log(json,typeof(json))
             CommentsArray=[]
             document.getElementById('CommentsList').innerHTML=' '
             document.getElementById('MyCommentsList').innerHTML=' '
-            console.log(CommentsArray)
+            //console.log(CommentsArray)
             MyCommentsArray=[...json]
-            console.log(MyCommentsArray)
+           // console.log(MyCommentsArray)
             MyCommentsArray.forEach((element,index) => {
-                console.log(element)
+              //  console.log(element)
          document.getElementById('MyCommentsList').innerHTML+='<li class="Comments">'+'</br>'+element.CommentName+'</li>';
                 });
-                console.log(MyCommentsArray.length)
+              //  console.log(MyCommentsArray.length)
 for(let i=0;i<MyCommentsArray.length;i++)
 {
-  console.log(i)
+ // console.log(i)
   document.getElementsByClassName('Comments')[i].addEventListener('click',
   function ClickComment()
   {
@@ -359,7 +360,7 @@ for(let i=0;i<MyCommentsArray.length;i++)
     
     const ele=document.getElementById("MainPara")
     const MainParaEleArray=document.getElementsByTagName("p")
-    console.log(MainParaEleArray)
+  //  console.log(MainParaEleArray)
     const textNode = ele.childNodes[0];
     scrollTo(0,(MyCommentsArray[i].HighlightTextYcordinator))
     
@@ -382,7 +383,7 @@ for(let i=0;i<MyCommentsArray.length;i++)
      //window.getSelection().removeAllRanges();
         var parent = MainParaEle[ 0 ].parentNode;
        
-        console.log(parent)
+       // console.log(parent)
         while( MainParaEle[ 0 ].firstChild ) {
           parent.insertBefore(  MainParaEle[ 0 ].firstChild, MainParaEle[ 0 ] );
       }
@@ -409,7 +410,7 @@ for(let i=0;i<MyCommentsArray.length;i++)
 document.getElementById('Listen').addEventListener('click',
 function ListenBlog()
 {
- console.log("Listen")
+// console.log("Listen")
  var Textmsg=document.getElementById('MainPara').innerHTML
  const utterance = new SpeechSynthesisUtterance(Textmsg);
   window.speechSynthesis.speak(utterance);
@@ -420,7 +421,7 @@ document.getElementById('Stop').addEventListener('click',
 function StopAudio()
 {
   //document.getElementById('Listen').disabled=true
-  console.log("Stop Audio")
+  //console.log("Stop Audio")
   window.speechSynthesis.pause();
 
 })

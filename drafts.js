@@ -1,4 +1,4 @@
-console.log("drafts")
+//console.log("drafts")
 const UserData=window.localStorage.getItem('user')
 showDrafts()
 
@@ -22,9 +22,9 @@ function showDrafts()
   .then(response=>response.json())
   .then(json=>
     {
-        console.log(json)
+      //  console.log(json)
         BlogArray=[...json.data]
-        console.log(BlogArray)
+        //console.log(BlogArray)
         BlogArray.forEach(fetchImg)
         
         function fetchImg(item,index)
@@ -33,7 +33,7 @@ function showDrafts()
           BlogImg[index]=`https://desolate-sierra-34755.herokuapp.com/api/blogs/img/${BlogArray[index]._id}`
            
         }
-        console.log(BlogImg)
+       // console.log(BlogImg)
 
         BlogArray.forEach(showdrafts)
 
@@ -47,11 +47,11 @@ function showDrafts()
             
           function ClickDraft(item,index)
           {
-            console.log(index)
+           // console.log(index)
               document.getElementsByClassName('DraftClass')[index].addEventListener('click',
                 function ReadDraft()
                 {
-                  console.log(index)
+                //  console.log(index)
                   window.location.href=`readDraft.html?blogId=${BlogArray[index]._id}` 
                 }
               )

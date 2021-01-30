@@ -75,7 +75,7 @@ function FetchAndShowBlogs()
     .then(response=>response.json())
     .then(json=>
       {
-        console.log(json)
+        //console.log(json)
         let d = document.createDocumentFragment();
         let TrendingRow=document.createElement('div')
         TrendingRow.setAttribute("id","TrendingRow")
@@ -109,7 +109,7 @@ function FetchAndShowBlogs()
         //  console.log(item._id)
           window.location.href=`ReadBlog.html?BlogId=${item._id}`
          })
-          console.log(item)
+         // console.log(item)
 
         }
 
@@ -121,7 +121,7 @@ function FetchAndShowBlogs()
       .then(response=>response.json())
       .then(json=>
         {
-          console.log(json)
+          //console.log(json)
           let d1 = document.createDocumentFragment();
           let NewRow=document.createElement('div')
           NewRow.setAttribute("id","NewRow")
@@ -155,7 +155,7 @@ function FetchAndShowBlogs()
           //  console.log(item._id)
             window.location.href=`ReadBlog.html?BlogId=${item._id}`
            })
-            console.log(item)
+           // console.log(item)
   
           }
   
@@ -167,7 +167,7 @@ function FetchAndShowBlogs()
     .then(response=>response.json())
     .then(json=>
       {
-        console.log(json)
+       // console.log(json)
         let d2 = document.createDocumentFragment();
         let AllBlogRow=document.createElement('div')
         AllBlogRow.setAttribute("id","AllBlogRow")
@@ -201,7 +201,7 @@ function FetchAndShowBlogs()
         //  console.log(item._id)
           window.location.href=`ReadBlog.html?BlogId=${item._id}`
          })
-          console.log(item)
+         // console.log(item)
 
         }
 
@@ -260,7 +260,7 @@ function FetchAndShowBlogs()
           //console.log(json.data)
 
           hashtagArr=[...json.data]
-          console.log(hashtagArr)
+         // console.log(hashtagArr)
            
           setTimeout(function()
           { 
@@ -289,7 +289,7 @@ function FetchAndShowBlogs()
             document.getElementById('NoDataImg').style.display='none'
               document.getElementById('HashTagArea').innerHTML+='<div class="row"><div class="col-md-4 SerachedDiv" id="SerachedDiv"><h4>'+item.BlogHeading +'</h4><p>'+item.BlogContent.slice(0,100) +'</p></div></div>'
               document.getElementById('HashTagArea').style.display="block"
-              console.log(index)
+            //  console.log(index)
           }
         
         hashtagArr.forEach(ClickeSearch)
@@ -305,7 +305,7 @@ function FetchAndShowBlogs()
         }
 
     })
-      console.log(document.getElementById('SearchBox').value)
+     // console.log(document.getElementById('SearchBox').value)
     if( document.getElementById('SearchBox').value=='')
     {
       document.getElementById('WihoutSearch').style.display='block'
@@ -321,16 +321,16 @@ function FetchAndShowBlogs()
   
 
  var signout=document.getElementById('SignOut');
- console.log(signout)
+ //console.log(signout)
  document.getElementById('SignOut').addEventListener('click',
  function SignOut()
  {
   let fingerprint = client.getFingerprint();
-     console.log("signout")
+    // console.log("signout")
      fetch(`https://desolate-sierra-34755.herokuapp.com/api/signout/${fingerprint}` )
      .then(response=>
          {
-             console.log(response)
+            // console.log(response)
              localStorage.removeItem("user");
             //window.location.href='index.html'
             if(response.ok==true)
