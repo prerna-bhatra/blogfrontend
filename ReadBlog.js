@@ -2,9 +2,17 @@ let url_string = window.location.href
 let url = new URL(url_string);
 let BlogId = url.searchParams.get("BlogId");
 let client = new ClientJS();
+let StopMultiExce=0;
 console.log(BlogId);
 CheckLogin()
 ReadBlog()
+
+
+setTimeout(function()
+{
+  StopMultiExce=0;
+  
+},2000)
 
 function CheckLogin()
 {
@@ -136,10 +144,15 @@ selectableTextArea.forEach(elem => {
   let RangeOfText=document.getSelection().getRangeAt(0)
   
   //publish comment and save into database
+  if(StopMultiExce==0)
+  {
+
   document.getElementById('PublishBtn').addEventListener('click',
   function PublishComment(event)
   {
      // alert('comment') 
+     
+     console.log("make comment")
      event.preventDefault()
     console.log(pos,RangeOfText)
     var x = document.getElementById("CommentBoxArea");
@@ -162,9 +175,7 @@ selectableTextArea.forEach(elem => {
     var Privacy=document.getElementById("CommentPrivacy").value;
     console.log(Privacy)
     console.log(comment)
-    const UserId=userDataObj.user._id
-    
-    
+    const UserId=userDataObj.user._id  
     const data={CommentName:comment,UserName:userDataObj.user.name,HighlightTextYcordinator:pos.y,HighlightTextRangeStartOffest:RangeOfText.startOffset, HighlightTextRangeEndOffest:RangeOfText.endOffset,BlogId:BlogId,CommentPrivacy:Privacy}
     console.log(data)
   fetch(`https://desolate-sierra-34755.herokuapp.com/api/comment/${UserId}`, {
@@ -178,15 +189,16 @@ selectableTextArea.forEach(elem => {
       .then(data => {
       console.log('Success:',  JSON.stringify(data));
       alert("comment added")
-      console.log("reload page")
-      window.location.reload;
-     // document.getElementById("CommentBoxArea").remove()
+      StopMultiExce=1;
+      console.log("STOPMULTIEXEC",StopMultiExce)
+     
       })
       .catch((error) => {
       console.error('Error:', error);
       });
   })
- // PublishComment
+}
+
 }
 
 let CommentsArray=[]
@@ -214,6 +226,7 @@ function ReadComments()
    
     CommentsArray.forEach((element,index) => {
         console.log(element)
+        
         document.getElementById('CommentsList').innerHTML+='<li class="Comments">'+element.UserName+'</br>'+element.CommentName+'</li>';
         });
 

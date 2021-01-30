@@ -276,9 +276,6 @@
         </ul>
       </div>
       </div>
-      <!--
-          this div will be popped on selecting the text
-      -->
       <div id="twitter-share-btn">
           <ul>
               <li><button><i class="fa fa-pencil"></i></button></li>
@@ -286,21 +283,16 @@
               <li><button onclick="Togglediv()"><i class="fa fa-comment"></i></button></li>
           </ul>
       </div>
-      
-      <!--
-          div with inpput and selected text 
-      -->
+    
       <div id="CommentBoxArea">
           <p id="SelectedText"></p>
-          <form method="POST">
           <input type="text" placeholder="Your Comment" id="Comment">
           <select id="CommentPrivacy">
             <option value=0>Private</option>
             <option value=1>Public</option>
           </select>
           <br/>
-          <button id="PublishBtn">Publish</button>
-        </form>
+          <button   onclick="PublishComment(e)"  value="publish" id="PublishBtn">
       </div>
       <div class="CommentBody"  id="CommentBody">
       </div>
