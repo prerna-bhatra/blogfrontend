@@ -27,16 +27,6 @@ function ReadBlog()
       // Print the 32bit hash id to the console
       console.log("fingerprint",fingerprint);
    
-    // const FindBlogIndex = Object.keys(localStorage)[Object.values(localStorage).indexOf(BlogId)];
-    // //console.log( FindBlogIndex)
-    // if(FindBlogIndex==undefined)
-    // {
-    //   ViewedValue=1;
-    //   localStorage.setItem(`layer${localStorage.length+1}`,BlogId)
-    // }
-    // console.log(ViewedValue)
-    
-    
     fetch(`https://desolate-sierra-34755.herokuapp.com/api/ReadBlog/${BlogId}/${fingerprint}`,
     {
       method: 'POST', // or 'PUT'

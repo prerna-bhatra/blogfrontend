@@ -245,6 +245,8 @@ function FetchAndShowBlogs()
 
       const data={hashtag:SearchValue}
       let hashtagArr=[]
+  
+     
       fetch(`https://desolate-sierra-34755.herokuapp.com/api/SearchByHashTag`, {
         method: 'POST', 
         headers: {
@@ -255,16 +257,36 @@ function FetchAndShowBlogs()
         .then(response => response.json())
         .then(json => {
           document.getElementById('HashTagArea').innerHTML=' '
-          console.log(json.data)
-    
+          //console.log(json.data)
+
           hashtagArr=[...json.data]
           console.log(hashtagArr)
+           
+          setTimeout(function()
+          { 
+            if(hashtagArr.length==0)
+            {
+              if( document.getElementById('HashTagArea').innerHTML==' ')
+              {
+                document.getElementById('ShowSpinner').style.display='none'
+              document.body.style.backgroundColor ='white'
+              document.getElementById('NoDataImg').style.display='block'
+              }
+              
+              
+            }
+          }, 3000);
+
+       
+
+          
           hashtagArr.forEach(ShowHashTagsSearch)
 
           function ShowHashTagsSearch(item,index)
           {
             document.body.style.backgroundColor ='white'
             document.getElementById('ShowSpinner').style.display='none'
+            document.getElementById('NoDataImg').style.display='none'
               document.getElementById('HashTagArea').innerHTML+='<div class="row"><div class="col-md-4 SerachedDiv" id="SerachedDiv"><h4>'+item.BlogHeading +'</h4><p>'+item.BlogContent.slice(0,100) +'</p></div></div>'
               document.getElementById('HashTagArea').style.display="block"
               console.log(index)
@@ -290,6 +312,7 @@ function FetchAndShowBlogs()
       document.body.style.backgroundColor ='white'
       document.getElementById('ShowSpinner').style.display='none'
       document.getElementById('HashTagArea').style.display='none'
+
     }
     }, 500);
 
